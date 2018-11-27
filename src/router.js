@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './components/Home.vue'
 import Topbar from './shared/Topbar.vue'
+import About from './components/About.vue'
 import Moncompte from './components/Moncompte.vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -39,6 +40,33 @@ export default new Router({
 
       }
 
+    },
+    {
+
+      path: '/home',
+      name: 'home',
+
+      components: {
+
+        top : Topbar,
+        body : Home
+
+      }
+
+    },
+    {
+
+      path: '/about',
+      name: 'about',
+
+      components: {
+
+        top : Topbar,
+        body : About
+
+      }
+
     }
+
   ]
 })
