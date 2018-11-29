@@ -92,8 +92,8 @@ import axios from 'axios'
 	        	//Menu de gauche
 	        items: [
 	          { title: 'Modifier le profil', icon: 'account_box', link: 'account' },
-	          { title: 'Evénements créés', icon: 'event', link: 'events/created' },
-	          { title: 'Evénements rejoints', icon: 'event_note', link: 'events/join' },
+	          { title: 'Evénements créés', icon: 'event', link: '/events/created' },
+	          { title: 'Evénements rejoints', icon: 'event_note', link: '/events/join' },
 	          { title: 'Notes', icon: 'star', link: 'notes' },
 	          { title: 'Rewards', icon: 'question_answer', link: 'rewards' },
 	        ],

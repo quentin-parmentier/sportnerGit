@@ -3,7 +3,12 @@ import Router from 'vue-router'
 import Home from './components/Home.vue'
 import Topbar from './shared/Topbar.vue'
 import About from './components/About.vue'
+
+
 import Moncompte from './components/Moncompte.vue'
+import Events from './components/Events.vue'
+import Notes from './components/Notes.vue'
+
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
@@ -63,6 +68,32 @@ export default new Router({
 
         top : Topbar,
         body : About
+
+      }
+
+    },
+    {
+
+      path: '/events/:id',
+      name: 'events',
+
+      components: {
+
+        top : Topbar,
+        body : Events
+
+      }
+
+    },
+    {
+
+      path: '/notes',
+      name: 'notes',
+
+      components: {
+
+        top : Topbar,
+        body : Notes
 
       }
 
