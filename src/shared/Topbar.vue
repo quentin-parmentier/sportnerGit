@@ -61,9 +61,9 @@
 
 		        drawer: false,
 		        items: [
-		          { title: 'Home', icon: 'dashboard', link: 'home' },
-		          { title: 'Mon compte', icon: 'dashboard', link: 'account' },
-		          { title: 'About', icon: 'question_answer', link: 'about' }
+		          { title: 'Home', icon: 'dashboard', link: '/home' },
+		          { title: 'Mon compte', icon: 'dashboard', link: '/account' },
+		          { title: 'About', icon: 'question_answer', link: '/about' }
 		        ],
 		        user: {pseudo : "Robert"}
 		        
