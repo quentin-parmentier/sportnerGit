@@ -1,20 +1,35 @@
+//Imports pour vue
+
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './components/Home.vue'
-import Topbar from './shared/Topbar.vue'
-import About from './components/About.vue'
-
-
-import Moncompte from './components/Moncompte.vue'
-import Events from './components/Events.vue'
-import Notes from './components/Notes.vue'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+//Mes pages
+
+  //Shared
+
+import Topbar from './shared/Topbar.vue'
+
+  //Components
+
+import Home from './components/Home.vue'
+import CreateEvents from './components/CreateEvents.vue'
+
+import About from './components/About.vue'
+
+  //Regroupement de mon compte
+import Moncompte from './components/Moncompte.vue'
+import Events from './components/Events.vue'
+import Notes from './components/Notes.vue'
+
+
+//Instanciations
 Vue.use(Router)
 Vue.use(VueAxios, axios)
 
+//Mes routes
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -22,12 +37,51 @@ export default new Router({
     {
 
       path: '/',
+      name: 'connexion',
+
+      components: {
+
+        top : Topbar,
+        body : Home
+
+      }
+    },
+    {
+
+      path: '/home',
       name: 'home',
 
       components: {
 
         top : Topbar,
         body : Home
+
+      }
+
+    },
+
+    {
+
+      path: '/create',
+      name: 'createevents',
+
+      components: {
+
+        top : Topbar,
+        body : CreateEvents
+
+      }
+    },
+
+    {
+
+      path: '/about',
+      name: 'about',
+
+      components: {
+
+        top : Topbar,
+        body : About
 
       }
 
@@ -44,33 +98,6 @@ export default new Router({
         body : Moncompte
 
       }
-
-    },
-    {
-
-      path: '/home',
-      name: 'home',
-
-      components: {
-
-        top : Topbar,
-        body : Home
-
-      }
-
-    },
-    {
-
-      path: '/about',
-      name: 'about',
-
-      components: {
-
-        top : Topbar,
-        body : About
-
-      }
-
     },
     {
 

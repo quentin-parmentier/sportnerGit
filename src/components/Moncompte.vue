@@ -22,42 +22,44 @@
 	      	<v-flex xs9>
 
 	      		<div>
-	      			<v-form ref="form" v-model="valid" class="mt40" lazy-validation>
+	      			<v-form ref="form" v-model="valid" lazy-validation>
 
-	      				<p class="font-weight-bold display-2"> Mes informations :</p>
+	      				<p class="font-weight-bold display-2 titrepage"> Mes informations :</p>
 
-						<v-text-field :rules="nameRules"  label="Nom" v-model="user.nom" required ></v-text-field>
-						<v-text-field :rules="nameRules"  label="Prénom" v-model="user.prenom" required ></v-text-field>
+	      				<v-flex xs8 offset-xs2>
+							<v-text-field :rules="nameRules"  label="Nom" v-model="user.nom" required ></v-text-field>
+							<v-text-field :rules="nameRules"  label="Prénom" v-model="user.prenom" required ></v-text-field>
 
-						<v-text-field :rules="emailRules" label="Email" v-model="user.email" required ></v-text-field>
-						<v-text-field label="Pseudo" v-model="user.pseudo" required disabled ></v-text-field>
-						<v-text-field label="Mes sports" v-model="user.sports" required></v-text-field>
-						
-						<v-select label="Sexe" :items="sexe" v-model="user.sexe" :rules="[v => !!v || 'Choisissez votre sexe!']"></v-select>
+							<v-text-field :rules="emailRules" label="Email" v-model="user.email" required ></v-text-field>
+							<v-text-field label="Pseudo" v-model="user.pseudo" required disabled ></v-text-field>
+							<v-text-field label="Mes sports" v-model="user.sports" required></v-text-field>
+							
+							<v-select label="Sexe" :items="sexe" v-model="user.sexe" :rules="[v => !!v || 'Choisissez votre sexe!']"></v-select>
 
-						<v-menu ref="menu1" :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width max-width="290px" min-width="290px" >
+							<v-menu ref="menu1" :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width max-width="290px" min-width="290px" >
 
-							<v-text-field slot="activator" v-model="user.birth" label="Date de naissance" persistent-hint @blur="date = parseDate(dateFormatted)" ></v-text-field>
+								<v-text-field slot="activator" v-model="user.birth" label="Date de naissance" persistent-hint @blur="date = parseDate(dateFormatted)" ></v-text-field>
 
-	          				<v-date-picker v-model="date" no-title @input="menu1 = false" required></v-date-picker>
+		          				<v-date-picker v-model="date" no-title @input="menu1 = false" required></v-date-picker>
 
-        				</v-menu>
+	        				</v-menu>
 
-        				<v-text-field label="Telephone" v-model="user.phone" required :rules="[v => !!v || 'Renseignez votre téléphone !']"></v-text-field>
+	        				<v-text-field label="Telephone" v-model="user.phone" required :rules="[v => !!v || 'Renseignez votre téléphone !']"></v-text-field>
 
-        				<v-autocomplete ref="country" :items="countries" v-model="user.country" label="Country" placeholder="Select..." required></v-autocomplete>
+	        				<v-autocomplete ref="country" :items="countries" v-model="user.country" label="Country" placeholder="Select..." required></v-autocomplete>
 
-        				<v-textarea v-model="user.description" label="Description" counter maxlength="1000">
-        					
-        				</v-textarea>
-
-
+	        				<v-textarea v-model="user.description" label="Description" counter maxlength="1000">
+	        					
+	        				</v-textarea>
 
 
-						<v-btn :disabled="!valid" @click="submit" >
-						submit
-						</v-btn>
 
+
+							<v-btn :disabled="!valid" @click="submit" >
+							submit
+							</v-btn>
+
+						</v-flex>
 						<!--<v-btn @click="clear">clear</v-btn>-->
 
 						</v-form>
@@ -68,7 +70,6 @@
 
       	</v-layout>
       	
-
 	</div>
 
 

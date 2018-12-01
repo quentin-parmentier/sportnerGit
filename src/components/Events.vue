@@ -23,9 +23,9 @@
 
 	      	<v-flex xs9>
 				
-				<p class="font-weight-bold display-2"> {{titlePage}} :</p>
+				<p class="font-weight-bold display-2 titrepage"> {{titlePage}} :</p>
 
-					<v-tabs v-model="active">
+					<v-tabs v-model="active" centered>
 
 						<!-- Clés -->
 
@@ -37,52 +37,55 @@
 
 						<v-tab-item :key="0">
 
-							<v-layout align-space-around column v-for="event in events" :key="event.id" class="item">
+							<v-flex xs8 offset-xs2>
 
-								<v-card>
+								<v-layout align-space-around column v-for="event in events" :key="event.id" class="item">
 
-									<v-layout>
+									<v-card>
 
-										<!-- Informations Event -->
+										<v-layout>
 
-										<v-flex xs5>
+											<!-- Informations Event -->
 
-											<v-card-text>
+											<v-flex xs5>
 
-												<p class="font-weight-bold">{{event.title}}</p>
-												<p class="font-weight-bold">{{event.date}} {{event.hour}}</p>
+												<v-card-text>
 
-											</v-card-text>
+													<p class="font-weight-bold">{{event.title}}</p>
+													<p class="font-weight-bold">{{event.date}} {{event.hour}}</p>
 
-										</v-flex>
+												</v-card-text>
 
-										<!-- BDD Event -->
+											</v-flex>
 
-										<v-flex xs7>
+											<!-- BDD Event -->
 
-											<v-card-text> 
+											<v-flex xs7>
 
-												<p class="text-xs-right font-weight-bold"> {{event.NbPart}} Participants </p>
+												<v-card-text> 
 
-												<!-- Boutons -->
+													<p class="text-xs-right font-weight-bold"> {{event.NbPart}} Participants </p>
 
-												<p class="text-xs-right buttons"> 
+													<!-- Boutons -->
 
-													<v-btn small round> Voir <v-icon small right>arrow_forward</v-icon></v-btn>
-													<v-btn small round> {{clears}} <v-icon small right>clear</v-icon></v-btn>
+													<p class="text-xs-right buttons"> 
 
-												</p>
+														<v-btn small round> Voir <v-icon small right>arrow_forward</v-icon></v-btn>
+														<v-btn small round> {{clears}} <v-icon small right>clear</v-icon></v-btn>
 
-											</v-card-text>
+													</p>
 
-										</v-flex>
-										
-									</v-layout>
+												</v-card-text>
 
+											</v-flex>
+											
+										</v-layout>
 
-								</v-card>
-								
-			          		</v-layout>
+									</v-card>
+
+				          		</v-layout>
+
+			          		</v-flex>
 						
 						</v-tab-item>
 
@@ -90,52 +93,55 @@
 
 						<v-tab-item :key="1">
 
-							<v-layout align-space-around column v-for="oldevent in oldevents" class="item" :key="oldevent.id">
+							<v-flex xs8 offset-xs2>
 
-								<v-card>
+								<v-layout align-space-around column v-for="oldevent in oldevents" class="item" :key="oldevent.id">
 
-									<v-layout>
+									<v-card>
 
-										<!-- Information sur l'event -->
+										<v-layout>
 
-										<v-flex xs5>
+											<!-- Information sur l'event -->
 
-											<v-card-text>
+											<v-flex xs5>
 
-												<p class="font-weight-bold">{{oldevent.title}}</p>
-												<p class="font-weight-bold">{{oldevent.date}} {{oldevent.hour}}</p>
+												<v-card-text>
 
-											</v-card-text>
+													<p class="font-weight-bold">{{oldevent.title}}</p>
+													<p class="font-weight-bold">{{oldevent.date}} {{oldevent.hour}}</p>
 
-										</v-flex>
+												</v-card-text>
 
-										<!-- BDD event -->
+											</v-flex>
 
-										<v-flex xs7>
+											<!-- BDD event -->
 
-											<v-card-text> 
+											<v-flex xs7>
 
-												<p class="text-xs-right font-weight-bold"> {{oldevent.NbPart}} Participants </p>
-												<p class="text-xs-right buttons"> 
+												<v-card-text> 
 
-													<!-- Boutons -->
+													<p class="text-xs-right font-weight-bold"> {{oldevent.NbPart}} Participants </p>
+													<p class="text-xs-right buttons"> 
 
-													<v-btn small round> Voir 
-														<v-icon small right>arrow_forward</v-icon>
-													</v-btn>
+														<!-- Boutons -->
 
-												</p>
+														<v-btn small round> Voir 
+															<v-icon small right>arrow_forward</v-icon>
+														</v-btn>
 
-											</v-card-text>
+													</p>
 
-										</v-flex>
-										
-									</v-layout>
+												</v-card-text>
+
+											</v-flex>
+											
+										</v-layout>
 
 
-								</v-card>
-								
-			          		</v-layout>
+									</v-card>
+				          		</v-layout>
+
+				          	</v-flex>
 
 						</v-tab-item>
 

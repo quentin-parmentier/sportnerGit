@@ -18,34 +18,94 @@
       </v-flex>
 
       <v-flex xs9>
-        <p class="font-weight-bold display-2">Mes notes :</p>
+      
+        <p class="font-weight-bold display-2 titrepage">Mes notes :</p>
 
-        <v-layout align-space-around column v-for="note in notes" :key="note.note" class="item">
-          <v-card>
-            <v-flex >
-              <v-layout row wrap>
-                <v-flex xs3>
-                  <div class="text-xs-center">
-                    <v-avatar class="avatar">
-                      <img src="https://randomuser.me/api/portraits/men/85.jpg">
-                    </v-avatar>
-                    <v-card-text class="profil">{{note.profil}}</v-card-text>
-                    <v-rating
-                      half-increments
-                      background-color="orange lighten-3"
-                      color="orange"
-                      v-model="note.note"
-                    ></v-rating>
-                  </div>
+        <v-tabs v-model="active" centered>
+
+              <!-- Clés -->
+
+              <v-tab :key="0" ripple> Notes reçues </v-tab>
+
+              <v-tab :key="1" ripple> Notes attribuées </v-tab>
+
+              <!-- Gestion des En cours -->
+
+              <v-tab-item :key="0">
+
+                <v-flex xs8 offset-xs2>
+
+                  <v-layout align-space-around column v-for="note in notes" :key="note.note" class="item">
+                    <v-card>
+                      <v-flex >
+                        <v-layout row wrap>
+                          <v-flex xs4>
+                            <div class="text-xs-center">
+                              <v-avatar class="avatar">
+                                <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                              </v-avatar>
+                              <v-card-text class="profil">{{note.profil}}</v-card-text>
+                              <v-rating
+                                half-increments
+                                background-color="orange lighten-3"
+                                color="orange"
+                                v-model="note.note"
+                                readonly
+                              ></v-rating>
+                            </div>
+                          </v-flex>
+                          <v-flex xs8>
+                            <v-card-text class="com">{{note.commentaire}}</v-card-text>
+                          </v-flex>
+                        </v-layout>
+                      </v-flex>
+                    </v-card>
+                  </v-layout>
+
                 </v-flex>
-                <v-flex xs9>
-                  <v-card-text class="com">{{note.commentaire}}</v-card-text>
+              
+              </v-tab-item>
+
+              <!-- Gestion des Historiques-->
+
+              <v-tab-item :key="1">
+
+                <v-flex xs8 offset-xs2>
+                  <v-layout align-space-around column v-for="note in notes" :key="note.note" class="item">
+                    <v-card>
+                      <v-flex >
+                        <v-layout row wrap>
+                          <v-flex xs4>
+                            <div class="text-xs-center">
+                              <v-avatar class="avatar">
+                                <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                              </v-avatar>
+                              <v-card-text class="profil">{{note.profil}}</v-card-text>
+                              <v-rating
+                                half-increments
+                                background-color="orange lighten-3"
+                                color="orange"
+                                v-model="note.note"
+                                readonly
+                              ></v-rating>
+                            </div>
+                          </v-flex>
+                          <v-flex xs8>
+                            <v-card-text class="com">{{note.commentaire}}</v-card-text>
+                          </v-flex>
+                        </v-layout>
+                      </v-flex>
+                    </v-card>
+                  </v-layout>
+
                 </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-card>
-        </v-layout>
+
+              </v-tab-item>
+
+        </v-tabs>
+
       </v-flex>
+
     </v-layout>
   </div>
 </template>
