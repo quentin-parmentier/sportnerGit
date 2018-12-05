@@ -23,6 +23,7 @@ import About from './components/About.vue'
 import Moncompte from './components/Moncompte.vue'
 import Events from './components/Events.vue'
 import Notes from './components/Notes.vue'
+import Rewards from './components/Rewards.vue'
 
 
 //Instanciations
@@ -124,7 +125,18 @@ export default new Router({
 
       }
 
-    }
+    },
+    {
+
+      path: '/rewards',
+      name: 'rewards',
+
+      components: {
+
+        top : Topbar,
+        body : Rewards
+
+      }
 
   ]
 })
