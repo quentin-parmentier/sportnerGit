@@ -61,9 +61,13 @@
 
 		        drawer: false,
 		        items: [
-		          { title: 'Home', icon: 'dashboard', link: 'home' },
-		          { title: 'Mon compte', icon: 'dashboard', link: 'account' },
-		          { title: 'About', icon: 'question_answer', link: 'about' }
+		          { title: 'Accueil', icon: 'home', link: '/home' },
+		          { title: 'Mon compte', icon: 'account_box', link: '/account' },
+		          { title: 'Créer un événement', icon: 'add_box', link: '/create' },
+		          { title: 'Mes événements', icon: 'event_note', link: '/events/created' },
+		          { title: 'Mes notifications', icon: 'notifications', link: '/notifications' },
+		          { title: 'About', icon: 'question_answer', link: '/about' },
+		          { title: 'Déconnexion', icon: 'power_off', link: '/disconnect' },
 		        ],
 		        user: {pseudo : "Robert"}
 		        
