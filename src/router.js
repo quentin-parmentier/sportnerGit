@@ -17,6 +17,8 @@ import Topbar from './shared/Topbar.vue'
 import Home from './components/Home.vue'
 import CreateEvents from './components/CreateEvents.vue'
 
+import Event from './components/Event.vue'
+
 import About from './components/About.vue'
 
   //Regroupement de mon compte
@@ -128,6 +130,19 @@ export default new Router({
     },
     {
 
+      path: '/event/:id',
+      name: 'event',
+
+      components: {
+
+        top : Topbar,
+        body : Event
+
+      }
+
+    },
+    {
+
       path: '/rewards',
       name: 'rewards',
 
@@ -137,7 +152,8 @@ export default new Router({
         body : Rewards
 
       }
-    }
 
-  ]
+    },
+
+]
 })
