@@ -10,11 +10,11 @@
 
 		</v-flex>
 
-		<v-layout row wrap class="mt20">
+		<v-layout row wrap>
 
 			<v-flex xs8>
 
-				<v-layout row wrap>
+				<v-layout row wrap class="pt20">
 
 					<v-flex xs3 class="text-xs-center">
 
@@ -41,25 +41,39 @@
 
 			</v-flex>
 
-			<v-flex xs4 class="">
+			<v-flex xs4 class="pt20">
 
 				<div class="full-height rightbar">
 
 					<p> Participants</p>
 
-					<div>
+					<div class="mt10">
 						
-						<v-avatar v-for="participant in event.participants" :tile="tile" :size="40" color="grey lighten-4" class="avatars">
+						<v-avatar v-for="participant in event.participants" :size="40" color="grey lighten-4" class="avatars">
 
 				        	<v-img v-bind:src="'https://randomuser.me/api/portraits/men/' + participant.id + '.jpg'" alt="${participant.id}"></v-img>
 
 				        </v-avatar>
 
+				        <v-avatar v-for="n in leftplaces" :size="40" color="grey lighten-4" class="avatars">
+
+				        </v-avatar>
+
 					</div>
 
-				
-					
+					<div class="mt10">
+						
+						{{leftplaces}} place restante
 
+					</div>
+
+					<div class="mt10">
+						
+						<v-btn @click="submit" >
+							Rejoindre
+						</v-btn>
+
+					</div>
 				</div>
 
 			</v-flex>
@@ -78,6 +92,7 @@
 	.avatars {
 
 		margin: 5px;
+
 	}
 
 </style>
@@ -90,7 +105,8 @@
 
     	data: vm => ({
 
-    		event : {id:"" ,title : "", date : "", hour : "" , nbPart : "" , text : "", creator : "" , participants : ""}
+    		event : {id:"" ,title : "", date : "", hour : "" , nbPart : "" , text : "", creator : "" , participants : ""},
+    		leftplaces : ""
 		}),
 
 		mounted: function(){
@@ -112,6 +128,8 @@
 				this.event.text = "Viens jouez c'est super cool en plus y'aura des pompomgrills";
 				this.event.creator = "Maxime Laurent";
 				this.event.participants = [{name:"Maxime" , id:"85"},{name:"Bernard" , id:"84"}];
+
+				this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
 
 			}
 
