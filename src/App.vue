@@ -2,7 +2,8 @@
     <div id="app" layout="column">
     	<v-app>
 	        <router-view name="top"></router-view>
-	        <router-view name="body" :key="$route.fullPath" flex></router-view>
+	        <router-view name="body" :key="$route.fullPath" flex class="mt64"></router-view>
+            <router-view name="bottom"></router-view>
 	    </v-app>
     </div>
 </template>

@@ -11,6 +11,7 @@ import VueAxios from 'vue-axios'
   //Shared
 
 import Topbar from './shared/Topbar.vue'
+import Footer from './shared/Footer.vue'
 
   //Components
 
@@ -45,7 +46,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Home
+        body : Home,
+        bottom : Footer
 
       }
     },
@@ -57,7 +59,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Home
+        body : Home,
+        bottom : Footer
 
       }
 
@@ -71,7 +74,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : CreateEvents
+        body : CreateEvents,
+        bottom : Footer
 
       }
     },
@@ -84,7 +88,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : About
+        body : About,
+        bottom : Footer
 
       }
 
@@ -98,7 +103,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Moncompte
+        body : Moncompte,
+        bottom : Footer
 
       }
     },
@@ -110,7 +116,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Events
+        body : Events,
+        bottom : Footer
 
       }
 
@@ -123,7 +130,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Notes
+        body : Notes,
+        bottom : Footer
 
       }
 
@@ -149,7 +157,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Rewards
+        body : Rewards,
+        bottom : Footer
 
       }
 
