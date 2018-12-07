@@ -96,7 +96,7 @@ import axios from 'axios'
 	          { title: 'Evénements créés', icon: 'event', link: '/events/created' },
 	          { title: 'Evénements rejoints', icon: 'event_note', link: '/events/join' },
 	          { title: 'Notes', icon: 'star', link: '/notes' },
-	          { title: 'Rewards', icon: 'question_answer', link: '/rewards' },
+	          { title: 'Rewards', icon: 'fa-medal', link: '/rewards' },
 	        ],
 
 	        	//User

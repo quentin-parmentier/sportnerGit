@@ -11,11 +11,14 @@ import VueAxios from 'vue-axios'
   //Shared
 
 import Topbar from './shared/Topbar.vue'
+import Footer from './shared/Footer.vue'
 
   //Components
 
 import Home from './components/Home.vue'
 import CreateEvents from './components/CreateEvents.vue'
+
+import Event from './components/Event.vue'
 
 import About from './components/About.vue'
 
@@ -23,6 +26,7 @@ import About from './components/About.vue'
 import Moncompte from './components/Moncompte.vue'
 import Events from './components/Events.vue'
 import Notes from './components/Notes.vue'
+import Rewards from './components/Rewards.vue'
 
 
 //Instanciations
@@ -42,7 +46,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Home
+        body : Home,
+        bottom : Footer
 
       }
     },
@@ -54,7 +59,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Home
+        body : Home,
+        bottom : Footer
 
       }
 
@@ -68,7 +74,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : CreateEvents
+        body : CreateEvents,
+        bottom : Footer
 
       }
     },
@@ -81,7 +88,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : About
+        body : About,
+        bottom : Footer
 
       }
 
@@ -95,7 +103,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Moncompte
+        body : Moncompte,
+        bottom : Footer
 
       }
     },
@@ -107,7 +116,8 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Events
+        body : Events,
+        bottom : Footer
 
       }
 
@@ -120,11 +130,39 @@ export default new Router({
       components: {
 
         top : Topbar,
-        body : Notes
+        body : Notes,
+        bottom : Footer
 
       }
 
-    }
+    },
+    {
 
-  ]
+      path: '/event/:id',
+      name: 'event',
+
+      components: {
+
+        top : Topbar,
+        body : Event
+
+      }
+
+    },
+    {
+
+      path: '/rewards',
+      name: 'rewards',
+
+      components: {
+
+        top : Topbar,
+        body : Rewards,
+        bottom : Footer
+
+      }
+
+    },
+
+]
 })
