@@ -153,8 +153,6 @@ a {
 
 .blank {
 
-    background-color: red;
     height: 100vh;
     position: sticky;
-    top : 0;
 }
