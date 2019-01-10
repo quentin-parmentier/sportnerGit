@@ -3,7 +3,7 @@
     <v-toolbar>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-btn flat>
-        <v-toolbar-title>Logo</v-toolbar-title>
+        <v-toolbar-title>Sportners</v-toolbar-title>
       </v-btn>
       <v-flex xs12 sm6 md3 class="ml50">
         <v-text-field label="Solo" solo></v-text-field>

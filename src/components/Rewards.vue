@@ -81,7 +81,7 @@ export default {
         link: "/events/join"
       },
       { title: "Notes", icon: "star", link: "/notes" },
-      { title: "Rewards", icon: "question_answer", link: "/rewards" }
+      { title: "Rewards", icon: "fa-medal", link: "/rewards" }
     ],
     rewards: [
       {

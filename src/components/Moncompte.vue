@@ -36,7 +36,7 @@
 							
 							<v-select label="Sexe" :items="sexe" v-model="user.sexe" :rules="[v => !!v || 'Choisissez votre sexe!']"></v-select>
 
-							<v-menu ref="menu1" :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width max-width="290px" min-width="290px" >
+							<v-menu ref="menu1" :close-on-content-click="false" v-model="menu1" :nudge-right="40" lazy transition="scale-transition" offset-y full-width max-width="290px" min-width="290px">
 
 								<v-text-field slot="activator" v-model="user.birth" label="Date de naissance" persistent-hint @blur="date = parseDate(dateFormatted)" ></v-text-field>
 
@@ -48,7 +48,7 @@
 
 	        				<v-autocomplete ref="country" :items="countries" v-model="user.country" label="Country" placeholder="Select..." required></v-autocomplete>
 
-	        				<v-textarea v-model="user.description" label="Description" counter maxlength="1000">
+	        				<v-textarea v-model="user.description" label="Description" auto-grow counter maxlength="1000">
 	        					
 	        				</v-textarea>
 
@@ -96,7 +96,7 @@ import axios from 'axios'
 	          { title: 'Evénements créés', icon: 'event', link: '/events/created' },
 	          { title: 'Evénements rejoints', icon: 'event_note', link: '/events/join' },
 	          { title: 'Notes', icon: 'star', link: '/notes' },
-	          { title: 'Rewards', icon: 'question_answer', link: '/rewards' },
+	          { title: 'Rewards', icon: 'fa-medal', link: '/rewards' },
 	        ],
 
 	        	//User

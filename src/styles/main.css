@@ -34,6 +34,7 @@ body {
 .mt5 { margin-top: 5px; }
 .mt10 { margin-top: 10px; }
 .mt20 { margin-top: 20px; }
+.mt30 { margin-top: 30px; }
 .mt40 { margin-top: 40px; }
 .mt50 { margin-top: 50px; }
 .mt64 { margin-top: 64px; }
@@ -50,6 +51,7 @@ body {
 
 .pt5 { padding-top: 5px; }
 .pt10 { padding-top: 10px; }
+.pt20 { padding-top: 20px; }
 .pt40 { padding-top: 40px; }
 
 .pb5 { padding-bottom: 5px; }
@@ -69,6 +71,14 @@ body {
 
 .fixed {position: fixed;}
 
+.sticky {    
+
+    position: sticky!important;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100vh;
+    }
 
 i.mdi {
     font-size: 20px;
@@ -83,15 +93,34 @@ i.mdi.icon-xlarge {
 }
 
 .topbar{
-	position: fixed;
+	position: sticky;
+    top : 0;
     width: 100%;
     z-index: 10000000000000;
 }
+
 
 .leftbar{
 	top : 64px;
 	position: fixed;
 	
+}
+
+.rightbar{
+    top: 105px; /*Use a suitable value here*/
+    position: sticky;
+    z-index: 1;
+    height: 80vh;
+    
+}
+
+.fixed{
+
+    position: fixed;
+}
+
+.static{
+    position: static;
 }
 
 .theme--light.v-navigation-drawer{
@@ -115,10 +144,15 @@ a {
 
 }
 
-
 .titrepage{
 
     margin : 40px;
     text-decoration: underline;
 
+}
+
+.blank {
+
+    height: 100vh;
+    position: sticky;
 }
