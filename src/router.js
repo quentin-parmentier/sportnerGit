@@ -25,6 +25,9 @@ import Events from './components/Events.vue'
 import Notes from './components/Notes.vue'
 import Rewards from './components/Rewards.vue'
 
+  //Connexion - inscription
+import SignUp from './components/SignUp.vue'
+
 
 //Instanciations
 Vue.use(Router)
@@ -135,6 +138,18 @@ export default new Router({
 
         top : Topbar,
         body : Rewards
+
+      }
+    },
+    {
+
+      path: '/signup',
+      name: 'signup',
+
+      components: {
+
+        top : Topbar,
+        body : SignUp
 
       }
     }
