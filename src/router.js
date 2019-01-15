@@ -17,6 +17,7 @@ import Footer from './shared/Footer.vue'
 
 import Home from './components/Home.vue'
 import CreateEvents from './components/CreateEvents.vue'
+import Notifications from './components/Notification.vue'
 
 import Event from './components/Event.vue'
 
@@ -44,7 +45,7 @@ export default new Router({
     {
 
       path: '/',
-      name: 'connexion',
+      name: 'home',
 
       components: {
 
@@ -56,8 +57,8 @@ export default new Router({
     },
     {
 
-      path: '/home',
-      name: 'home',
+      path: '/connexion',
+      name: 'connexion',
 
       components: {
 
@@ -178,6 +179,19 @@ export default new Router({
       }
     }
 
+
+      path : '/notifications',
+      name : 'notifications',
+
+      components: {
+
+        top : Topbar,
+        body : Notifications,
+        bottom : Footer
+
+      }
+
+    },
 
 ]
 })

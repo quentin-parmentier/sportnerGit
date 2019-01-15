@@ -1,3 +1,5 @@
+<!-- my events -->
+
 <template>
 	
 	<div>
@@ -6,16 +8,14 @@
 
 			<v-flex xs3 class="borderR">
 				<div class="pt40 pl40 full-height fixed">
-					<v-list-tile v-for="item in items" :key="item.title">
-
+					<v-list-tile v-for="item in items" :key="item.title" :to="item.link">
 						<v-list-tile-action>
 							<v-icon>{{ item.icon }}</v-icon>
 						</v-list-tile-action>
 
 						<v-list-tile-content>
-							<router-link :to="item.link"> <v-list-tile-title>{{item.title}}</v-list-tile-title> </router-link>
+							<v-list-tile-title>{{item.title}}</v-list-tile-title>
 						</v-list-tile-content>
-
 			        </v-list-tile>
 
 				</div>

@@ -3,24 +3,24 @@
     <v-layout row wrap>
       <v-flex xs3 class="borderR">
         <div class="pt40 pl40 full-height fixed">
-          <v-list-tile v-for="item in items" :key="item.title">
+          <v-list-tile v-for="item in items" :key="item.title" :to="item.link">
             <v-list-tile-action>
               <v-icon>{{ item.icon }}</v-icon>
             </v-list-tile-action>
 
             <v-list-tile-content>
-              <router-link :to="item.link">
-                <v-list-tile-title>{{item.title}}</v-list-tile-title>
-              </router-link>
+              <v-list-tile-title>{{item.title}}</v-list-tile-title>
             </v-list-tile-content>
-          </v-list-tile>
+              </v-list-tile>
+
         </div>
       </v-flex>
 
       <!-- Grid of rewards section -->
       <v-flex xs9>
-        <v-flex xs8 offset-sm1>
-          <p class="font-weight-bold display-2 py-4">Mes Rewards :</p>
+        <p class="font-weight-bold display-2 py-4 ml50">Mes Rewards</p>
+        <v-flex xs8 offset-sm2>
+          
           <v-card class="mb-4">
             <v-container grid-list-xl fluid>
               <v-layout row wrap>

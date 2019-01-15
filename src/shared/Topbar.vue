@@ -2,7 +2,7 @@
   <div class="topbar">
     <v-toolbar>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn flat>
+      <v-btn flat to="/">
         <v-toolbar-title>Sportners</v-toolbar-title>
       </v-btn>
       <v-flex xs12 sm6 md3 class="ml50">
@@ -11,11 +11,11 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-divider vertical></v-divider>
-        <v-btn flat>
+        <v-btn flat to="/create">
           <v-icon>add_box</v-icon>
         </v-btn>
         <v-divider vertical></v-divider>
-        <v-btn flat>
+        <v-btn flat to="/notifications">
           <v-icon>notifications</v-icon>
         </v-btn>
         <v-divider vertical></v-divider>
@@ -45,27 +45,32 @@
         <v-list class="pt-0" dense>
           <v-divider></v-divider>
 
-          <v-list-tile v-for="item in items" :key="item.title" @click>
+          <v-list-tile v-for="item in items" :key="item.title" @click :to="item.link">
+
             <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
+              
+                <v-icon>{{ item.icon }}</v-icon>
+
             </v-list-tile-action>
 
             <v-list-tile-content>
-              <router-link :to="item.link">
+              
                 <v-list-tile-title>{{item.title}}</v-list-tile-title>
-              </router-link>
+              
             </v-list-tile-content>
+
           </v-list-tile>
+
         </v-list>
       </v-navigation-drawer>
     </v-layout>
   </div>
 </template>
 
-<style scope>
-.avatar {
-  padding: 0px;
-}
+<style>
+  .avatar {
+    padding: 0px;
+  }
 </style>
 
 <script>
@@ -74,7 +79,7 @@ export default {
     return {
       drawer: false,
       items: [
-        { title: "Accueil", icon: "home", link: "/home" },
+        { title: "Accueil", icon: "home", link: "/" },
         { title: "Mon compte", icon: "account_box", link: "/account" },
         { title: "Créer un événement", icon: "add_box", link: "/create" },
         {

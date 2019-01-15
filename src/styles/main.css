@@ -4,32 +4,27 @@ body {
     -moz-osx-font-smoothing: grayscale;
     color: #2c3e50;
 }
-
 .el-popover {
     text-align: left;
 }
-
 .ma5 { margin: 5px; }
 .ma10 { margin: 10px; }
 .ma20 { margin: 20px; }
-
 .ml0 { margin-left: 0 !important }
 .ml5 { margin-left: 5px; }
 .ml10 { margin-left: 10px; }
 .ml20 { margin-left: 20px; }
 .ml50 { margin-left: 50px; }
-
 .mr0 { margin-right: 0 }
 .mr5 { margin-right: 5px; }
 .mr10 { margin-right: 10px; }
 .mr20 { margin-right: 20px; }
 .mr50 { margin-right: 50px; }
-
 .mb0 { margin-bottom: 0 }
 .mb5 { margin-bottom: 5px; }
 .mb10 { margin-bottom: 10px; }
+.mb20 { margin-bottom: 20px; }
 .mb50 { margin-bottom: 50px; }
-
 .mt0 { margin-top: 0 }
 .mt5 { margin-top: 5px; }
 .mt10 { margin-top: 10px; }
@@ -38,74 +33,57 @@ body {
 .mt40 { margin-top: 40px; }
 .mt50 { margin-top: 50px; }
 .mt64 { margin-top: 64px; }
-
+.pa0 { padding: 0px }
 .pa5 { padding: 5px }
 .pa10 { padding: 10px }
-
 .pl5 { padding-left: 5px; }
 .pl10 { padding-left: 10px; }
+.pl20 { padding-left: 20px; }
 .pl40 { padding-left: 40px; }
-
 .pr5 { padding-right: 5px; }
 .pr10 { padding-right: 10px; }
-
 .pt5 { padding-top: 5px; }
 .pt10 { padding-top: 10px; }
 .pt20 { padding-top: 20px; }
 .pt40 { padding-top: 40px; }
-
 .pb5 { padding-bottom: 5px; }
 .pb10 { padding-bottom: 10px; }
-
 .borderR { border-right: 2px solid black; }
-
 .borderL { border-left: 2px solid black; }
-
 .full-width {
     width: 100%;
 }
-
 .full-height {
     height: 100vh;
 }
-
 .fixed {position: fixed;}
-
 .sticky {    
-
     position: sticky!important;
     top: 0;
     right: 0;
     left: 0;
     height: 100vh;
     }
-
 i.mdi {
     font-size: 20px;
 }
-
 i.mdi.icon-large {
     font-size: 32px;
 }
-
 i.mdi.icon-xlarge {
     font-size: 48px;
 }
-
 .topbar{
-	position: sticky;
+    position: sticky;
     top : 0;
     width: 100%;
     z-index: 10000000000000;
 }
-
-
 .leftbar{
-	top : 64px;
-	position: fixed;
-	
+    top : 64px;
+    position: fixed;
+    
 }
-
 .rightbar{
     top: 105px; /*Use a suitable value here*/
     position: sticky;
@@ -113,46 +91,36 @@ i.mdi.icon-xlarge {
     height: 80vh;
     
 }
-
 .fixed{
-
     position: fixed;
 }
-
 .static{
     position: static;
 }
-
 .theme--light.v-navigation-drawer{
-
-	background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
-
 a {
     color: black;
     text-decoration: none;
 }
-
 .v-messages__message{
-
     color: red;
 }
-
 .item {
-
     margin: 10px;
-
 }
-
 .titrepage{
-
     margin : 40px;
     text-decoration: underline;
-
 }
-
 .blank {
-
     height: 100vh;
     position: sticky;
+}
+
+.v-btn:before{
+
+    width: 0px;
+
 }
