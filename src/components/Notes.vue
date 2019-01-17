@@ -34,27 +34,27 @@
 
                 <v-flex xs8 offset-xs2>
 
-                  <v-layout align-space-around column v-for="note in notes" :key="note.note" class="item">
+                  <v-layout align-space-around column v-for="note in notesM" :key="note.id_notation" class="item">
                     <v-card>
                       <v-flex >
                         <v-layout row wrap>
                           <v-flex xs4>
                             <div class="text-xs-center">
                               <v-avatar class="avatar">
-                                <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                                <router-link tag="img" v-bind:src="'https://randomuser.me/api/portraits/men/'+note.id_emetteur+'.jpg'" alt="${note.id_emetteur}" v-bind:to="'/user/' + note.id_emetteur"> </router-link>
                               </v-avatar>
-                              <v-card-text class="profil">{{note.profil}}</v-card-text>
+                              <v-card-text class="profil">{{note.prenom}}</v-card-text>
                               <v-rating
                                 half-increments
                                 background-color="orange lighten-3"
                                 color="orange"
-                                v-model="note.note"
+                                v-model="note.id_notation"
                                 readonly
                               ></v-rating>
                             </div>
                           </v-flex>
                           <v-flex xs8>
-                            <v-card-text class="com">{{note.commentaire}}</v-card-text>
+                            <v-card-text class="com">{{note.message}}</v-card-text>
                           </v-flex>
                         </v-layout>
                       </v-flex>
@@ -70,27 +70,29 @@
               <v-tab-item :key="1">
 
                 <v-flex xs8 offset-xs2>
-                  <v-layout align-space-around column v-for="note in notes" :key="note.note" class="item">
+
+                  <v-layout align-space-around column v-for="note in notesG" :key="note.id_notation" class="item">
                     <v-card>
                       <v-flex >
                         <v-layout row wrap>
                           <v-flex xs4>
                             <div class="text-xs-center">
+
                               <v-avatar class="avatar">
-                                <img src="https://randomuser.me/api/portraits/men/85.jpg">
+                                <router-link tag="img" v-bind:src="'https://randomuser.me/api/portraits/men/'+note.id_receveur+'.jpg'" alt="${note.id_receveur}" v-bind:to="'/user/' + note.id_receveur"> </router-link>
                               </v-avatar>
-                              <v-card-text class="profil">{{note.profil}}</v-card-text>
+                              <v-card-text class="profil">{{note.prenom}}</v-card-text>
                               <v-rating
                                 half-increments
                                 background-color="orange lighten-3"
                                 color="orange"
-                                v-model="note.note"
+                                v-model="note.id_notation"
                                 readonly
                               ></v-rating>
                             </div>
                           </v-flex>
                           <v-flex xs8>
-                            <v-card-text class="com">{{note.commentaire}}</v-card-text>
+                            <v-card-text class="com">{{note.message}}</v-card-text>
                           </v-flex>
                         </v-layout>
                       </v-flex>
@@ -141,32 +143,26 @@ export default {
       { title: "Notes", icon: "star", link: "/notes" },
       { title: "Rewards", icon: "fa-medal", link: "/rewards" }
     ],
-    notes: [
-      {
-        note: "5",
-        profil: "Julien",
-        commentaire:
-          "Contemnendos qui quodam fere arbitrantur in etiam Sunt quidam superiores qui amicitias sunt opere extollere nisi putant ipsi modo se."
-      },
-      {
-        note: "3.5",
-        profil: "Chloé",
-        commentaire:
-          "Contemnendos qui quodam fere arbitrantur in etiam Sunt quidam superiores qui amicitias sunt opere extollere nisi putant ipsi modo se."
-      },
-      {
-        note: "1",
-        profil: "Patrick",
-        commentaire:
-          "Praesertim quid a inter dissentias ille esse quid ob potest dissentias disputando reprehensiones reprehensiones ludus mihi in contentiones a illa se ut diceret solent vituperandae Quam probes Triari videri iracundiae quo dissentientium mihi dissentientium ut probarem a sunt ludus indignae a iracundiae in Epicureum esse pertinaces quo mihi reprehensiones tum."
-      },
-      {
-        note: "4",
-        profil: "Jean",
-        commentaire:
-          "Leges venerabilis frugi parens cervices parens et oppressas libertatis venerabilis."
-      }
-    ]
-  })
+    notesG: [],
+    notesM: [],
+
+  }),
+
+  mounted: function(){
+
+    axios.get('http://api.test/api/mynotes/'+this.globaliduser).then(response => {
+
+
+      this.notesM = response.data.mynotes;
+      console.log(response.data.giftnotes);
+      this.notesG = response.data.giftnotes;
+
+      console.log(this.noteG);
+      //userspart = response.data.users;
+
+    });
+
+  }
+
 };
 </script>
