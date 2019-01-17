@@ -124,3 +124,9 @@ a {
     width: 0px;
 
 }
+
+.searchplus{
+
+    top : 64px;
+    position: fixed;
+}

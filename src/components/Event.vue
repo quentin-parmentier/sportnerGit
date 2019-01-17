@@ -49,8 +49,7 @@
 						
 						<v-avatar v-for="participant in event.participants" :size="40" color="grey lighten-4" class="avatars" >
 
-							
-			        		<v-img v-bind:src="'https://randomuser.me/api/portraits/men/' + participant.id + '.jpg'" alt="${participant.id}"></v-img>
+							<router-link tag="img" v-bind:src="'https://randomuser.me/api/portraits/men/' + participant.id_user + '.jpg'" alt="${participant.id_user}" v-bind:to="'/user/' + participant.id_user"> </router-link>
 				        	
 				        </v-avatar>
 
@@ -62,14 +61,14 @@
 
 					<div class="mt10">
 						
-						{{leftplaces}} place restante
+						{{leftplacestext}}
 
 					</div>
 
 					<div class="mt10">
 						
-						<v-btn @click="submit" >
-							Rejoindre
+						<v-btn @click="submit">
+							{{textbouton}}
 						</v-btn>
 
 					</div>
@@ -147,18 +146,19 @@
 
     	data: vm => ({
 
-    		event : {id:"" ,title : "", date : "", hour : "" , nbPart : "" , text : "", creator : "" , participants : "", lat:"48.692054" , lng: "6.184417"},
+    		event : {id:"", sport: "" ,title : "", date : "", hour : "" , nbPart : "" , text : "", creator : "" , participants : "", lat:"" , lng: ""},
     		leftplaces : "",
+    		leftplacestext : "",
+    		textbouton : "Rejoindre",
 
-    		pos_event : null
+    		pos_event : null,
 		}),
 
 		mounted: function(){
 
 			var idevent = this.$route.params.id;
-			this.getEvent(idevent);
 
-			this.initMap();
+			this.getEvent(idevent);
 
 		},
 
@@ -166,31 +166,50 @@
 
 			getEvent(id) {
 
-				/*axios.get('http://api.test/api/events/'+id+'/').then(response => {
+				axios.get('http://api.test/api/events/'+id).then(response => {
 
-					this.event.id = id;
-					this.event.title = response.titre;
-					this.event.date = "17 nov 2018";
-					this.event.hour = "14h30";
-					this.event.nbPart = "3";
-					this.event.text = "Viens jouez c'est super cool en plus y'aura des pompomgrills";
-					this.event.creator = "Maxime Laurent";
-					this.event.participants = [{name:"Maxime" , id:"85"},{name:"Bernard" , id:"84"}];
+					let eventget = response.data.events[0];
+					let userspart = [];
+
+					userspart = response.data.users;
+
+					this.event.id = eventget.id_event;
+					this.event.sport = eventget.sport;
+					this.event.title = eventget.titre;
+					this.event.date = eventget.date;
+					this.event.hour = eventget.time;
+					this.event.nbPart = eventget.nb_max;
+					this.event.text = eventget.description;
+					this.event.creator = "" + eventget.prenom + " " + eventget.nom;
+					this.event.lat = eventget.lat;
+					this.event.lng = eventget.lng;
+					this.event.participants = userspart;
 
 					this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
 
-				})*/
 
-				this.event.id = id;
-				this.event.title = "TOTO";
-				this.event.date = "17 nov 2018";
-				this.event.hour = "14h30";
-				this.event.nbPart = "3";
-				this.event.text = "Viens jouez c'est super cool en plus y'aura des pompomgrills";
-				this.event.creator = "Maxime Laurent";
-				this.event.participants = [{name:"Maxime" , id:"85"},{name:"Bernard" , id:"84"}];
 
-				this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
+					if(this.leftplaces < 2){
+
+						this.leftplacestext = this.leftplaces + " place restante";
+
+					}else{
+
+						this.leftplacestext = this.leftplaces + " places restantes";
+					}
+
+					userspart.forEach((element) => {
+
+						if(this.globaliduser == element.id_user){
+							this.leftplacestext = "Vous participez déjà à l'évènement";
+							this.textbouton = "Annuler";
+						}
+						
+					});
+
+					this.initMap();
+
+				})
 
 			},
 
@@ -205,6 +224,29 @@
 
 			submit(){
 
+				if(this.textbouton == "Rejoindre"){
+
+					axios.post('http://api.test/api/join',
+					{
+						idevent: this.event.id,
+						iduser: this.globaliduser,
+				    })
+					.then(response => {
+						console.log(response);
+					});
+
+				}else{
+
+					axios.post('http://api.test/api/leave',
+					{
+						idevent: this.event.id,
+						iduser: this.globaliduser,
+				    })
+					.then(response => {
+						console.log(response);
+					});
+
+				}
 
 			}
 

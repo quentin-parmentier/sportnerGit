@@ -5,9 +5,19 @@
       <v-btn flat to="/">
         <v-toolbar-title>Sportners</v-toolbar-title>
       </v-btn>
-      <v-flex xs12 sm6 md3 class="ml50">
-        <v-text-field label="Solo" solo></v-text-field>
+
+
+      <v-flex xs10 sm6 md3 class="ml50">
+        <v-text-field label="Rechercher" append-icon="search" solo> </v-text-field>
       </v-flex>
+
+      <v-flex xs1 class="ml10">
+        <v-btn @click.stop="searchplus = !searchplus">
+          <v-icon dark>{{iconsearch}}</v-icon> de critères
+        </v-btn>
+      </v-flex>
+
+
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-divider vertical></v-divider>
@@ -19,7 +29,7 @@
           <v-icon>notifications</v-icon>
         </v-btn>
         <v-divider vertical></v-divider>
-        <v-btn flat class="avatar">
+        <v-btn flat class="avatar" to="/account">
           <v-avatar>
             <img src="https://randomuser.me/api/portraits/men/85.jpg">
           </v-avatar>
@@ -32,6 +42,7 @@
       <v-navigation-drawer v-model="drawer" temporary class="leftbar">
         <v-list class="pa-1">
           <v-list-tile avatar>
+
             <v-list-tile-avatar>
               <img src="https://randomuser.me/api/portraits/men/85.jpg">
             </v-list-tile-avatar>
@@ -64,6 +75,15 @@
         </v-list>
       </v-navigation-drawer>
     </v-layout>
+
+    <v-layout wrap>
+
+      <v-navigation-drawer v-model="searchplus" class="searchplus" height="20%" width="2500">
+ 
+      </v-navigation-drawer>
+
+    </v-layout>
+
   </div>
 </template>
 
@@ -78,6 +98,8 @@ export default {
   data() {
     return {
       drawer: false,
+      searchplus: false,
+      iconsearch: 'add',
       items: [
         { title: "Accueil", icon: "home", link: "/" },
         { title: "Mon compte", icon: "account_box", link: "/account" },

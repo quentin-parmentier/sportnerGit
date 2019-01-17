@@ -169,9 +169,27 @@
 
 			},
 
-	      submit(){
+	      	submit(){
 
-	      }
+		      	axios.post('http://api.test/api/events',
+				{
+					
+					sport : this.event.sport,
+					dateevent : this.event.date,
+					heure : this.event.hour,
+					desc : this.event.description,
+					titre : this.event.name,
+					createur : this.globaliduser,
+					lat : this.event.lat,
+					lng : this.event.lng,
+					nbmax : this.event.number,
+					
+			    })
+				.then(response => {
+					console.log(response);
+				});
+
+	      	}
 	    }
 	}
 

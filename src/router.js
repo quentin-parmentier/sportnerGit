@@ -39,6 +39,7 @@ Vue.use(VueAxios, axios)
 
 //Mes routes
 export default new Router({
+
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -173,13 +174,12 @@ export default new Router({
 
       components: {
 
-        top : Topbar,
         body : SignUp
 
       }
-    }
+    },
 
-
+    {
       path : '/notifications',
       name : 'notifications',
 
