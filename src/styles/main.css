@@ -156,3 +156,23 @@ a {
     height: 100vh;
     position: sticky;
 }
+
+
+
+/*** Account part ***/
+.borderR { 
+    background-color: #fff;
+    border-right: 1px solid #F5F6FA;
+}
+
+.main_container {
+    background-color: #F5F6FA;
+  }
+
+.v-tabs__div {
+    text-transform: none!important;
+}
+
+.v-tabs__item--active {
+    color: #FB6B53!important;
+}
