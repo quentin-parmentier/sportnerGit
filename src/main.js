@@ -9,8 +9,10 @@ import './styles/main.css'
 import './styles/flexbox.css'
 
 Vue.config.productionTip = false
+Vue.prototype.globaliduser = 10;
 
 new Vue({
+
   router,
   render: h => h(App)
 }).$mount('#app')

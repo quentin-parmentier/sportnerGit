@@ -17,6 +17,7 @@ import Footer from './shared/Footer.vue'
 
 import Home from './components/Home.vue'
 import CreateEvents from './components/CreateEvents.vue'
+import Notifications from './components/Notification.vue'
 
 import Event from './components/Event.vue'
 
@@ -38,13 +39,14 @@ Vue.use(VueAxios, axios)
 
 //Mes routes
 export default new Router({
+
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
 
       path: '/',
-      name: 'connexion',
+      name: 'home',
 
       components: {
 
@@ -56,8 +58,8 @@ export default new Router({
     },
     {
 
-      path: '/home',
-      name: 'home',
+      path: '/connexion',
+      name: 'connexion',
 
       components: {
 
@@ -172,12 +174,24 @@ export default new Router({
 
       components: {
 
-        top : Topbar,
         body : SignUp
 
       }
-    }
+    },
 
+    {
+      path : '/notifications',
+      name : 'notifications',
+
+      components: {
+
+        top : Topbar,
+        body : Notifications,
+        bottom : Footer
+
+      }
+
+    },
 
 ]
 })
