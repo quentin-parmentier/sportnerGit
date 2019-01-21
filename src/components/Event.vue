@@ -232,7 +232,31 @@
 						iduser: this.globaliduser,
 				    })
 					.then(response => {
-						console.log(response);
+						
+						let userspart = response.data.users
+
+						this.event.participants = userspart;
+
+						this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
+
+						if(this.leftplaces < 2){
+
+							this.leftplacestext = this.leftplaces + " place restante";
+
+						}else{
+
+							this.leftplacestext = this.leftplaces + " places restantes";
+						}
+
+						userspart.forEach((element) => {
+
+							if(this.globaliduser == element.id_user){
+								this.leftplacestext = "Vous participez déjà à l'évènement";
+								this.textbouton = "Annuler";
+							}
+							
+						});
+
 					});
 
 				}else{
@@ -243,7 +267,33 @@
 						iduser: this.globaliduser,
 				    })
 					.then(response => {
-						console.log(response);
+						
+						let userspart = response.data.users
+
+						this.event.participants = userspart;
+
+						this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
+
+						if(this.leftplaces < 2){
+
+							this.leftplacestext = this.leftplaces + " place restante";
+
+						}else{
+
+							this.leftplacestext = this.leftplaces + " places restantes";
+						}
+
+						this.textbouton = "Rejoindre";
+
+						userspart.forEach((element) => {
+
+							if(this.globaliduser == element.id_user){
+								this.leftplacestext = "Vous participez déjà à l'évènement";
+								this.textbouton = "Annuler";
+							}
+							
+						});
+
 					});
 
 				}

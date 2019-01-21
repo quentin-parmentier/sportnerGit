@@ -338,15 +338,21 @@ export default {
   }),
 
   mounted: function() {
+
     if (this.$route.params.id == "join") {
+
       this.titlePage = "Mes événements rejoints";
       this.typeEvent = "joined";
       this.clears = "Annuler";
+
     } else if (this.$route.params.id == "created") {
+
       this.titlePage = "Mes événements créés";
       this.typeEvent = "created";
       this.clears = "Supprimer";
+
     }
+    
   }
 };
 </script>
