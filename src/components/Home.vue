@@ -68,21 +68,28 @@
 <template>
   
   <div>
-    
+
     <v-layout row wrap>
       <v-flex xs8>
         <v-card>
           <v-container v-bind="{ [`grid-list-sm`]: true }" fluid>
             <v-layout row wrap>
             <v-flex v-for="event in events" xs4 >
-              <v-card flat tile :to="`/event/${event.id}`" :data-lat="event.lat" :data-lng="event.lng" :data-sport="event.sport" class="js-marker">
-                <v-img :src="`https://unsplash.it/150/300?image=${event.id}`" max-height="200px">
+              <v-card flat tile :to="`/event/${event.id_event}`" :data-lat="event.lat" :data-lng="event.lng" :data-sport="event.sport" class="js-marker">
+                <v-img :src="`https://unsplash.it/150/300?image=100`" max-height="200px"> <!--${event.id_event}-->
                   
                 </v-img>
-                <v-card-title primary-title>
+
+                <div>
+                  <b class="titre">{{event.titre}}</b>
+                </div>
+
+                <v-card-title primary-title class="mtn15">
+
                   <div>
-                    <div>{{event.text}}</div>
+                    <div>{{event.description}}</div>
                   </div>
+
                 </v-card-title>
               </v-card>
             </v-flex>
@@ -92,7 +99,7 @@
       </v-flex>
       <v-flex xs4>
         <div class="map blank" id="js_map" ref="mamap">
-            <v-btn color="error" class="floating-reload" ref="floatbutton" @click="reload" v-if="isReload">Relancer la recherche ici <v-icon>refresh</v-icon></v-btn>
+            <v-btn color="error" class="floating-reload" ref="floatbutton" @click="eventmaj" v-if="isReload">Relancer la recherche ici <v-icon>refresh</v-icon></v-btn>
         </div>
       </v-flex>
     </v-layout>
@@ -127,6 +134,9 @@
     }
     getCenter(){
       return this.map.getCenter();
+    }
+    getBounds(){
+      return this.map.getBounds();
     }
     cleanMap(){
       this.map.eachLayer((layer)=>{
@@ -177,38 +187,36 @@
   export default {
     data: vm => ({
       events : [
-          {id:"0" ,title : "Sport 1 ICI", date : "27 Nov", hour : "14h" , NbPart : "3" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.75", lng: "6.10", sport:"Basketball"},
-          {id:"1" ,title : "Sport 2 ICI", date : "28 Nov", hour : "15h" , NbPart : "4" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"2" ,title : "Sport 3 ICI", date : "29 Nov", hour : "16h" , NbPart : "5" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"3" ,title : "Sport 4 ICI", date : "30 Nov", hour : "17h" , NbPart : "6" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"4" ,title : "Sport 5 ICI", date : "30 Nov", hour : "18h" , NbPart : "7" , text : " Lorem IpsumLorem Ipsum Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"5" ,title : "Sport 6 ICI", date : "31 Nov", hour : "19h" , NbPart : "8" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"6" ,title : "Sport 7 ICI", date : "31 Nov", hour : "20h" , NbPart : "9" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"7" ,title : "Sport 8 ICI", date : "27 Nov", hour : "14h" , NbPart : "3" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"8" ,title : "Sport 9 ICI", date : "28 Nov", hour : "15h" , NbPart : "4" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"9" ,title : "Sport 10 ICI", date : "29 Nov", hour : "16h" , NbPart : "5" , text : " Lorem IpsumLorem IpsumLorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"10" ,title : "Sport 11 ICI", date : "30 Nov", hour : "17h" , NbPart : "6" , text : "Lorem IpsumLorem Ipsum Lorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"11" ,title : "Sport 12 ICI", date : "30 Nov", hour : "18h" , NbPart : "7" , text : "Lorem IpsumLorem Ipsum Lorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"12" ,title : "Sport 13 ICI", date : "31 Nov", hour : "19h" , NbPart : "8" , text : "Lorem IpsumLorem Ipsum Lorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
-          {id:"13" ,title : "Sport 17 ICI", date : "31 Nov", hour : "20h" , NbPart : "9" , text : "Lorem IpsumLorem Ipsum Lorem Ipsum", lat: "48.70", lng: "6.10", sport:"football"},
+          
       ],
-      user : {name : "Paul", lat : "48.692054", lng : "6.184417"},
       map : null,
       pos_actu : null,
       activeMarker : null,
       exist : null,
       isReload : false,
       pagelaunched: false,
+      heureHome : "",
+
     }),
     mounted: function () {
 
       this.initMap();
 
+      //this.eventlaunch();
+
+      this.$root.$on('Home', () => {
+
+          this.eventmaj();
+
+      });
+
+      this.eventmaj();
+
     },
     methods: {
       initMap(){
         this.map = new leafletMap();
-        this.pos_user = {"lat":this.user.lat,"lng":this.user.lng};
+        this.pos_user = {"lat":this.globallatuser,"lng":this.globalnguser};
         this.pos_actu = this.pos_user;
         this.map.load('js_map',this.pos_user);
         this.map.map.addEventListener('click',()=>{
@@ -267,7 +275,39 @@
         this.map.cleanMap();
         this.creatingPoint(this.map);
         this.isReload = false;
-      }
+        
+      },
+      eventmaj(){
+
+        let bounds = this.map.getBounds();
+        
+        axios.get('http://api.test/api/events',
+         {
+
+          params:{
+            sport: this.$root.$data.choixsport,
+            dateevent : this.$root.$data.choixdate,
+            heure: this.$root.$data.choixheure,
+            search: this.$root.$data.choixsearch,
+            lat1: bounds["_southWest"]["lat"],
+            lat2: bounds["_northEast"]["lat"],
+            lng1: bounds["_southWest"]["lng"],
+            lng2: bounds["_northEast"]["lng"],
+
+          }
+
+        }).then(response => {
+
+          this.events = response.data.events;
+
+
+        }).then(response => {
+
+          this.reload();
+
+        });
+
+      },
     }
   }
 </script>

@@ -32,7 +32,6 @@ import Rewards from './components/Rewards.vue'
   //Connexion - inscription
 import SignUp from './components/SignUp.vue'
 
-
 //Instanciations
 Vue.use(Router)
 Vue.use(VueAxios, axios)

@@ -8,13 +8,25 @@
 
 
       <v-flex xs10 sm6 md3 class="ml50">
-        <v-text-field label="Rechercher" append-icon="search" solo> </v-text-field>
+
+        <v-layout column class="mt15">
+          <v-text-field v-model="searchbar" label="Rechercher" append-icon="search" solo> </v-text-field>
+
+          <v-flex xs1>
+            <v-btn @click.stop="searchplus = !searchplus">
+              <v-icon dark>{{iconsearch}}</v-icon> de critères
+            </v-btn>
+          </v-flex>
+
+
+        </v-layout>
+
       </v-flex>
 
       <v-flex xs1 class="ml10">
-        <v-btn @click.stop="searchplus = !searchplus">
-          <v-icon dark>{{iconsearch}}</v-icon> de critères
-        </v-btn>
+
+        <v-btn @click="verification" :to="{ path: '/'}"> Recherche </v-btn>
+        
       </v-flex>
 
 
@@ -79,7 +91,60 @@
     <v-layout wrap>
 
       <v-navigation-drawer v-model="searchplus" class="searchplus" height="20%" width="2500">
- 
+        
+
+        <v-layout row wrap class="mt15">
+
+          <v-flex xs4 class="ml20">
+
+            <v-combobox v-model="chips" :items="sports" label="Vos sports" chips clearable solo multiple class="topbarplus">
+
+              <template slot="selection" slot-scope="data">
+
+                <v-chip :selected="data.selected" close @input="remove(data.item)">
+
+                  <strong>{{ data.item }}</strong>&nbsp;
+
+                </v-chip>
+
+              </template>
+
+            </v-combobox>
+
+          </v-flex>
+
+          <v-flex xs3>
+            <v-menu
+              :close-on-content-click="false"
+              v-model="menu2"
+              :nudge-right="40"
+              lazy
+              transition="scale-transition"
+              offset-y
+              full-width
+              min-width="290px"
+            >
+              <v-text-field
+                slot="activator"
+                v-model="datetop"
+                label="Date de l'événement"
+                prepend-icon="event"
+                
+                class="ml20"
+              ></v-text-field>
+              <v-date-picker first-day-of-week="1" v-model="datetop" @input="menu2 = false"></v-date-picker>
+            </v-menu>
+
+          </v-flex>
+
+          <v-flex xs2 class="ml20">
+            <v-text-field prepend-icon="access_time" label="Après :" v-model="choixheuremodel" type="time"></v-text-field>
+          </v-flex>
+
+        </v-layout>
+        
+
+
       </v-navigation-drawer>
 
     </v-layout>
@@ -94,9 +159,21 @@
 </style>
 
 <script>
+
+
+
 export default {
-  data() {
-    return {
+  data : vm => ({
+      
+      chips: [], //On récupère ça dans les likes
+      choixheuremodel : "",
+      searchbar : "",
+      datetop: new Date().toISOString().substr(0, 10),
+
+      sports: [
+        "Accrobranche","Aerobic","Aéromodélisme","Aérostation","Agility","Aikido","Airsoft","Alpinisme","Apnée","Athlétisme","Aviation","Aviron","Badminton","Baseball","Basketball","Biathlon","Billard","BMX","Bobsleigh","Boccia","Bodyboard","Boomerang","Bowling","Boxe","Bridge","Canoë","Canoë-kayak","Canyonisme","Capoeira","Carrom","Catch","Chanbara","Cheerleading","Cirque","Claquettes","Combat","Course","Cricket","Croquet","Crosse","Crossfit","Curling","Cyclisme","Danse","Danse orientale","Deltaplane","Echecs","Equitation","Escalade","Escrime","Fitness","Flag","Fléchettes","Football","Footing","Funboard","Futsal","Giraviation","Golf","Gouren","Grappling","Gymnastique","Haltérophilie","Handball","Handisport","Hapkido","Hockey","Iaïdo","Jetski","Jodo","Jorkyball","Joutes","Ju-Jitsu","Judo","Karaté","Karting","Kempo","Kendo","Kenjutsu","Kitesurf","Kobudo","Krav-maga","Kyudo","Lancer du javelot","Lancer du marteau","Lancer du poids","Luge","Lutte","Marche","Monocycle","Moto","Motoneige","Mountainboard","Musculation","Naginata","Natation","Natation synchronisée","Ninjitsu","Nunchaku","Omnikin","Padel","Paintball","Pancrace","Parachutisme","Paramoteur","Parapente","Patinage","Pêche","Pentathlon","Pétanque","Peteca","Planche à voile","Plongée","Plongeon","Polo","Qi gong","Quad","Quilles","Rafting","Ragga","Raid","Rallye","Randonnée","Rock","Roller","Rugby","Salsa","Samba","Sambo","Sarbacane","Sauvetage","Skateboard","Skeleton","Ski","Snowboard","Softball","Spéléologie","Squash","Sumo","Surf","Taekwondo","Tambourin","Tango","Tennis","Tir","Tir à l'arc","Traîneaux","Trampoline","Triathlon","Trottinette","Tumbling","ULM","Ultimate","Ultimate fresbee","Varappe","Vélo","Voile","Volleyball","Voltige","VTT","Wakeboard","Waterpolo","Yoga"
+      ],
+
       drawer: false,
       searchplus: false,
       iconsearch: 'add',
@@ -117,8 +194,55 @@ export default {
         { title: "About", icon: "question_answer", link: "/about" },
         { title: "Déconnexion", icon: "power_off", link: "/disconnect" }
       ],
-      user: { pseudo: "Robert" }
-    };
+      user: { pseudo: "Robert" },
+
+
+      menu: false,
+      modal: false,
+      menu2: false
+ 
+   
+  }),
+
+  methods: {
+
+    remove (item) {
+
+
+      this.chips.splice(this.chips.indexOf(item), 1);
+      this.chips = [...this.chips];
+
+
+    },
+
+    verification(){
+
+      //console.log(this.$root.$data);
+      //console.log(this.$root.$data);
+      this.$root.$emit('Home') //like this
+
+    }
+
+  },
+
+  mounted: function(){
+
+    this.chips = this.$root.$data.choixsport;
+    this.choixheuremodel = this.$root.$data.choixheuremodel;
+    this.datetop = "";
+
+
+  },
+
+  updated: function(){
+
+    this.$root.$data.choixheure = this.choixheuremodel;
+    this.$root.$data.choixsport = this.chips;
+    this.$root.$data.choixsearch = this.searchbar;
+    this.$root.$data.choixdate = this.datetop;
+
   }
+
+
 };
 </script>

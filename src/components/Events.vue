@@ -42,7 +42,7 @@
                     align-space-around
                     column
                     v-for="event in events"
-                    :key="event.id"
+                    :key="event.id_event"
                     class="item_row"
                   >
                     <v-card height="100%">
@@ -55,23 +55,25 @@
                         <!-- Informations Event -->
                         <v-flex xs4 fill-height>
                           <v-card-text class="event_infos_wrapper">
-                            <p class="event_title">{{event.title}}</p>
-                            <p class="event_infos">le {{event.date}} à {{event.hour}}</p>
-                            <p class="event_description">{{event.text}}</p>
+                            <p class="event_title">{{event.titre}}</p>
+                            <p class="event_infos">le {{event.date}} à {{event.time}}</p>
+                            <p class="event_description">{{event.description}}</p>
                           </v-card-text>
                         </v-flex>
 
                         <!-- BDD Event -->
                         <v-flex xs4 fill-height height="100%">
                           <v-card-text class="event_participate">
-                            <p class="text-xs-right" align-top>{{event.NbPart}} Participants</p>
+                            <p class="text-xs-right" align-top>{{event.nb_max}} Participants</p>
 
                             <!-- Boutons -->
                             <p class="text-xs-right buttons">
-                              <v-btn small class="first_button">Voir
-                                <v-icon small>trending_flat</v-icon>
-                              </v-btn>
-                              <v-btn small>
+
+                                <v-btn :to="`/event/${event.id_event}`" small class="first_button">Voir
+                                  <v-icon small>trending_flat</v-icon>
+                                </v-btn>
+
+                              <v-btn small @click="deleteevent(event.id_event)">
                                 {{clears}}
                                 <v-icon small>clear</v-icon>
                               </v-btn>
@@ -103,20 +105,20 @@
                         <!-- Information sur l'event -->
                         <v-flex xs4 fill-height>
                           <v-card-text class="event_infos_wrapper">
-                            <p class="event_title">{{oldevent.title}}</p>
-                            <p class="event_infos">le {{oldevent.date}} à {{oldevent.hour}}</p>
-                            <p class="event_description">{{oldevent.text}}</p>
+                            <p class="event_title">{{oldevent.titre}}</p>
+                            <p class="event_infos">le {{oldevent.date}} à {{oldevent.time}}</p>
+                            <p class="event_description">{{oldevent.description}}</p>
                           </v-card-text>
                         </v-flex>
 
                         <!-- BDD event -->
                         <v-flex xs4>
                           <v-card-text class="event_participate">
-                            <p class="text-xs-right">{{oldevent.NbPart}} Participants</p>
+                            <p class="text-xs-right">{{oldevent.nb_max}} Participants</p>
                             
                             <!-- Boutons -->
                             <p class="text-xs-right buttons">
-                              <v-btn small class="first_button">Voir
+                              <v-btn :to="`/event/${oldevent.id_event}`" small class="first_button">Voir
                                 <v-icon small>trending_flat</v-icon>
                               </v-btn>
                             </p>
@@ -221,6 +223,7 @@ p {
 import axios from "axios";
 
 export default {
+
   data: vm => ({
     typeEvent: "",
 
@@ -243,99 +246,70 @@ export default {
     ],
 
     events: [
-      {
-        id: "0",
-        title: "Basket de folie",
-        date: "27 Nov. 2018",
-        hour: "17h30",
-        NbPart: "5",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "1",
-        title: "Sport 2 ICI",
-        date: "28 Nov",
-        hour: "15h",
-        NbPart: "4",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "2",
-        title: "Sport 3 ICI",
-        date: "29 Nov",
-        hour: "16h",
-        NbPart: "5",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "3",
-        title: "Sport 4 ICI",
-        date: "30 Nov",
-        hour: "17h",
-        NbPart: "6",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "4",
-        title: "Sport 5 ICI",
-        date: "30 Nov",
-        hour: "18h",
-        NbPart: "7",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "5",
-        title: "Sport 6 ICI",
-        date: "31 Nov",
-        hour: "19h",
-        NbPart: "8",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "6",
-        title: "Sport 7 ICI",
-        date: "31 Nov",
-        hour: "20h",
-        NbPart: "9",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      }
+      
     ],
 
     oldevents: [
-      {
-        id: "7",
-        title: "Sport Passé ICI",
-        date: "27 Nov",
-        hour: "14h",
-        NbPart: "3",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "8",
-        title: "Sport Passé ICI",
-        date: "28 Nov",
-        hour: "15h",
-        NbPart: "4",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "9",
-        title: "Sport Passé ICI",
-        date: "29 Nov",
-        hour: "16h",
-        NbPart: "5",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      },
-      {
-        id: "10",
-        title: "Sport Passé ICI",
-        date: "30 Nov",
-        hour: "17h",
-        NbPart: "6",
-        text: "Premières lignes de la description de l'événement. Tout ce que l'auteur veut renseigner."
-      }
+      
     ]
   }),
+
+  methods : {
+
+    deleteevent($id){
+
+      if (this.$route.params.id == "join") {
+
+        axios.delete('http://api.test/api/leaveevent/'+$id , {
+
+          params: {iduser: this.globaliduser}
+
+        }).then(response => {
+
+          console.log(response);
+          this.titlePage = "Mes événements rejoints";
+          this.typeEvent = "joined";
+          this.clears = "Annuler";
+
+          axios.get('http://api.test/api/joinedevents/'+this.globaliduser).then(response => {
+
+            this.oldevents = response.data.passed;
+            this.events = response.data.futur;
+
+          });
+
+        });
+
+      } else if (this.$route.params.id == "created") {
+
+        axios.delete('http://api.test/api/events/'+$id , {
+
+          params: {iduser: this.globaliduser}}
+
+
+          ).then(response => {
+
+          console.log(response);
+
+          this.titlePage = "Mes événements créés";
+          this.typeEvent = "created";
+          this.clears = "Supprimer";
+
+          axios.get('http://api.test/api/myevents/'+this.globaliduser).then(response => {
+
+              this.oldevents = response.data.passed;
+              this.events = response.data.futur;
+              console.log(response.data.futur);
+
+          });
+
+        });
+
+      }
+
+    }
+
+  },
 
   mounted: function() {
 
@@ -345,14 +319,28 @@ export default {
       this.typeEvent = "joined";
       this.clears = "Annuler";
 
+      axios.get('http://api.test/api/joinedevents/'+this.globaliduser).then(response => {
+
+        this.oldevents = response.data.passed;
+        this.events = response.data.futur;
+
+      });
+
     } else if (this.$route.params.id == "created") {
 
       this.titlePage = "Mes événements créés";
       this.typeEvent = "created";
       this.clears = "Supprimer";
 
+      axios.get('http://api.test/api/myevents/'+this.globaliduser).then(response => {
+
+          this.oldevents = response.data.passed;
+          this.events = response.data.futur;
+          console.log(response.data.futur);
+      });
+
     }
-    
+
   }
 };
 </script>

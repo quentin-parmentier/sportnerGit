@@ -214,6 +214,7 @@
 			},
 
 			initMap(){
+				
 				this.map = new leafletMap();
 				this.pos_event = {"lat":this.event.lat,"lng":this.event.lng};
 				this.map.load('js_map',this.pos_event);
@@ -232,30 +233,42 @@
 						iduser: this.globaliduser,
 				    })
 					.then(response => {
-						
-						let userspart = response.data.users
 
-						this.event.participants = userspart;
+						console.log(response.data.code);
 
-						this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
+						if(response.data.code == "OK"){
 
-						if(this.leftplaces < 2){
+							let userspart = response.data.users
 
-							this.leftplacestext = this.leftplaces + " place restante";
+							this.event.participants = userspart;
+
+							console.log(this.event);
+
+							this.leftplaces = parseInt(this.event.nbPart) - this.event.participants.length;
+
+							if(this.leftplaces < 2){
+
+								this.leftplacestext = this.leftplaces + " place restante";
+
+							}else{
+
+								this.leftplacestext = this.leftplaces + " places restantes";
+							}
+
+							userspart.forEach((element) => {
+
+								if(this.globaliduser == element.id_user){
+									this.leftplacestext = "Vous participez déjà à l'évènement";
+									this.textbouton = "Annuler";
+								}
+								
+							});
 
 						}else{
 
-							this.leftplacestext = this.leftplaces + " places restantes";
+							this.popup(response.code);
+
 						}
-
-						userspart.forEach((element) => {
-
-							if(this.globaliduser == element.id_user){
-								this.leftplacestext = "Vous participez déjà à l'évènement";
-								this.textbouton = "Annuler";
-							}
-							
-						});
 
 					});
 
@@ -297,6 +310,12 @@
 					});
 
 				}
+
+			},
+
+			popup(code){
+
+				console.log("");
 
 			}
 

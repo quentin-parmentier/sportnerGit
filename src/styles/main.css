@@ -28,11 +28,14 @@ body {
 .mt0 { margin-top: 0 }
 .mt5 { margin-top: 5px; }
 .mt10 { margin-top: 10px; }
+.mt15 { margin-top: 15px; }
 .mt20 { margin-top: 20px; }
 .mt30 { margin-top: 30px; }
 .mt40 { margin-top: 40px; }
 .mt50 { margin-top: 50px; }
 .mt64 { margin-top: 64px; }
+.mtn10 { margin-top: -10px; }
+.mtn15 { margin-top: -15px; }
 .pa0 { padding: 0px }
 .pa5 { padding: 5px }
 .pa10 { padding: 10px }
@@ -149,4 +152,5 @@ a {
 
     top : 64px;
     position: fixed;
+    background-color: rgba(0, 0, 0, 1);
 }
