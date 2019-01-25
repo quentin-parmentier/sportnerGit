@@ -25,6 +25,7 @@ import About from './components/About.vue'
 
   //Regroupement de mon compte
 import Moncompte from './components/Moncompte.vue'
+import User from './components/User.vue'
 import Events from './components/Events.vue'
 import Notes from './components/Notes.vue'
 import Rewards from './components/Rewards.vue'
@@ -108,6 +109,19 @@ export default new Router({
 
         top : Topbar,
         body : Moncompte,
+        bottom : Footer
+
+      }
+    },
+    {
+
+      path: '/user/:id',
+      name: 'vuecompte',
+
+      components: {
+
+        top : Topbar,
+        body : User,
         bottom : Footer
 
       }

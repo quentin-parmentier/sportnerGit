@@ -1,29 +1,15 @@
 <template>
   <div>
     <v-layout row wrap>
-      <v-flex xs3 class="borderR">
-        <div class="pt40 pl40 full-height fixed">
-          <v-list-tile v-for="item in items" :key="item.title">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
 
-            <v-list-tile-content>
-              <router-link :to="item.link">
-                <v-list-tile-title>{{item.title}}</v-list-tile-title>
-              </router-link>
-            </v-list-tile-content>
-          </v-list-tile>
-        </div>
-      </v-flex>
+      <v-flex xs12 class="main_container">
 
-      <v-flex xs9 class="main_container">
-        <v-flex lg8 md10 sm12 xs12 offset-lg1>
+        <v-flex lg8 md8 sm10 xs10 offset-xs2>
           <!-- Title of the page -->
           <v-card flat tile class="section_header">
             <v-layout justify-space-between align-center>
               <v-flex xs12 sm4>
-                <p class="section_title">Modifier le profil</p>
+                <p class="section_title">Profil</p>
               </v-flex>
             </v-layout>
           </v-card>
@@ -41,14 +27,14 @@
                     </div>
                     <v-layout row>
                       <v-flex xs12 md6 class="form_field">
-                        <v-text-field label="Pseudo" v-model="user.pseudo" required disabled></v-text-field>
+                        <v-text-field label="Pseudo" v-model="user.pseudo" disabled disabled></v-text-field>
                       </v-flex>
                       <v-flex xs12 md6 class="form_field">
                         <v-text-field
                           :rules="emailRules"
                           label="Email"
                           v-model="user.mail"
-                          required
+                          disabled
 													color="#fb6b53"
                         ></v-text-field>
                       </v-flex>
@@ -60,12 +46,12 @@
                           :rules="nameRules"
                           label="Prénom"
                           v-model="user.prenom"
-                          required
+                          disabled
 													color="#fb6b53"
                         ></v-text-field>
                       </v-flex>
                       <v-flex xs12 md6 class="form_field">
-                        <v-text-field :rules="nameRules" label="Nom" v-model="user.nom" required color="#fb6b53"></v-text-field>
+                        <v-text-field :rules="nameRules" label="Nom" v-model="user.nom" disabled color="#fb6b53"></v-text-field>
                       </v-flex>
                     </v-layout>
 
@@ -77,6 +63,7 @@
                           v-model="user.sexe"
                           :rules="[v => !!v || 'Choisissez votre sexe!']"
 													color="#fb6b53"
+                          disabled
                         ></v-select>
                       </v-flex>
 
@@ -101,8 +88,9 @@
                             persistent-hint
                             @blur="date = parseDate(dateFormatted)"
 														color="#fb6b53"
+                            disabled
                           ></v-text-field>
-                          <v-date-picker v-model="date" no-title @input="menu1 = false" required></v-date-picker>
+                          <v-date-picker v-model="date" no-title @input="menu1 = false" disabled></v-date-picker>
                         </v-menu>
                       </v-flex>
 
@@ -110,44 +98,10 @@
                         <v-text-field
                           label="Telephone"
                           v-model="user.telephone"
-                          required
+                          disabled
                           :rules="[v => !!v || 'Renseignez votre téléphone !']"
 													color="#fb6b53"
                         ></v-text-field>
-                      </v-flex>
-                    </v-layout>
-                  </v-card>
-
-                  <v-card flat tile class="form_card">
-                    <div class="section_title_container">
-                      <span class="section_decoration"></span>
-                      <h4>Informations de contact</h4>
-                    </div>
-                    <v-layout row>
-                      <v-flex xs12 class="form_field">
-                        <v-text-field label="Adresse" v-model="user.address" required color="#fb6b53"></v-text-field>
-                      </v-flex>
-                    </v-layout>
-
-                    <v-layout row>
-                      <v-flex xs12 md4 class="form_field">
-                        <v-text-field label="Ville" v-model="user.city" required color="#fb6b53"></v-text-field>
-                      </v-flex>
-
-                      <v-flex xs12 md4 class="form_field">
-                        <v-text-field label="Code postal" v-model="user.postal_code" required color="#fb6b53"></v-text-field>
-                      </v-flex>
-
-                      <v-flex xs12 md4 class="form_field">
-                        <v-autocomplete
-                          ref="country"
-                          :items="countries"
-                          v-model="user.country"
-                          label="Pays"
-                          placeholder="Selectionner un pays"
-                          required
-													color="#fb6b53"
-                        ></v-autocomplete>
                       </v-flex>
                     </v-layout>
                   </v-card>
@@ -159,7 +113,7 @@
                     </div>
                     <v-layout row>
                       <v-flex xs12 class="form_field">
-                        <v-text-field label="Mes sports" v-model="user.sports" required color="#fb6b53"></v-text-field>
+                        <v-text-field label="Mes sports" v-model="user.sports" disabled color="#fb6b53"></v-text-field>
                       </v-flex>
                     </v-layout>
 
@@ -169,16 +123,11 @@
                           v-model="user.description"
                           label="Description"
                           auto-grow
-                          counter
+                          disabled
                           maxlength="1000"
 													color="#fb6b53"
                         ></v-textarea>
                       </v-flex>
-                    </v-layout>
-
-                    <v-layout row>
-                      <v-btn :disabled="!valid" @click="submit">submit</v-btn>
-                      <!--<v-btn @click="clear">clear</v-btn>-->
                     </v-layout>
                   </v-card>
                 </v-container>
@@ -299,7 +248,7 @@ export default {
 		],
 		email: '',
 		emailRules: [
-		v => !!v || 'E-mail is required',
+		v => !!v || 'E-mail is disabled',
 		v => /.+@.+/.test(v) || 'E-mail invalide'
 		],
 		select: null,
@@ -314,7 +263,7 @@ export default {
 
     mounted : function(){
 
-    	axios.get('http://api.test/api/profil/'+this.globaliduser).then(response => {
+    	axios.get('http://api.test/api/profil/'+this.$route.params.id).then(response => {
 
 	      this.user = response.data[0];
 
