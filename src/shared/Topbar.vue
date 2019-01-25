@@ -10,7 +10,7 @@
       <v-flex xs10 sm6 md3 class="ml50">
 
         <v-layout column class="mt15">
-          <v-text-field v-model="searchbar" label="Rechercher" append-icon="search" solo> </v-text-field>
+          <v-text-field v-model="searchbar" label="Sport, Ville, Heure" append-icon="search" solo> </v-text-field>
 
           <v-flex xs1>
             <v-btn @click.stop="searchplus = !searchplus">

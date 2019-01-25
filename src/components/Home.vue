@@ -76,7 +76,7 @@
             <v-layout row wrap>
             <v-flex v-for="event in events" xs4 >
               <v-card flat tile :to="`/event/${event.id_event}`" :data-lat="event.lat" :data-lng="event.lng" :data-sport="event.sport" class="js-marker">
-                <v-img :src="`https://unsplash.it/150/300?image=100`" max-height="200px"> <!--${event.id_event}-->
+                <v-img :src="`https://unsplash.it/150/300?image=`+event.id_event" max-height="200px"> <!--${event.id_event}-->
                   
                 </v-img>
 
@@ -280,7 +280,7 @@
       eventmaj(){
 
         let bounds = this.map.getBounds();
-        
+
         axios.get('http://api.test/api/events',
          {
 
@@ -297,6 +297,8 @@
           }
 
         }).then(response => {
+
+          console.log(response);
 
           this.events = response.data.events;
 
