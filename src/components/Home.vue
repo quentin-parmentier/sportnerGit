@@ -70,6 +70,16 @@
   <div>
 
     <v-layout row wrap>
+      <v-alert
+    :value="alertI"
+    type="info"
+    transition="scale-transition"
+    class="alerte"
+    >
+
+      {{alerte}}
+    </v-alert>
+
       <v-flex xs8>
         <v-card>
           <v-container v-bind="{ [`grid-list-sm`]: true }" fluid>
@@ -196,6 +206,9 @@
       isReload : false,
       pagelaunched: false,
       heureHome : "",
+      alertI : false,
+      alerte: "",
+
 
     }),
     mounted: function () {
@@ -298,9 +311,15 @@
 
         }).then(response => {
 
-          console.log(response);
-
           this.events = response.data.events;
+
+
+          if(response.data.events.length == 0){
+
+            this.alerte = "Impossible de trouver un événement";
+            this.alertI = true;
+            setTimeout(()=>{ this.alertI=false}, 3000);
+          }
 
 
         }).then(response => {

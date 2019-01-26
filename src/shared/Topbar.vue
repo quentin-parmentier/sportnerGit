@@ -10,10 +10,11 @@
       <v-flex xs10 sm6 md3 class="ml50">
 
         <v-layout column class="mt15">
-          <v-text-field v-model="searchbar" label="Sport, Ville, Heure" append-icon="search" solo> </v-text-field>
+
+          <v-text-field v-model="searchbar" label="Sport, Ville, Heure" append-icon="search" class="toto" solo> </v-text-field>
 
           <v-flex xs1>
-            <v-btn @click.stop="searchplus = !searchplus">
+            <v-btn @click.stop="searchplus = !searchplus" class="buttonplus">
               <v-icon dark>{{iconsearch}}</v-icon> de critères
             </v-btn>
           </v-flex>
@@ -43,7 +44,7 @@
         <v-divider vertical></v-divider>
         <v-btn flat class="avatar" to="/account">
           <v-avatar>
-            <img src="https://randomuser.me/api/portraits/men/85.jpg">
+            <img v-bind:src="'https://randomuser.me/api/portraits/men/'+globaliduser+'.jpg'">
           </v-avatar>
         </v-btn>
         <v-divider vertical></v-divider>
@@ -155,6 +156,12 @@
 <style>
   .avatar {
     padding: 0px;
+  }
+
+  .v-text-field.v-text-field--solo .v-input__control{
+
+    min-height: 30px;
+    margin-top: -10px;
   }
 </style>
 

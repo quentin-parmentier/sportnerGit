@@ -4,6 +4,27 @@
 	
 	<div>
 		
+		<v-alert
+		:value="alertR"
+		type="success"
+		transition="scale-transition"
+		class="alerte"
+		>
+
+			{{alerte}}
+		</v-alert>
+
+		<v-alert
+		:value="alertN"
+		type="error"
+		transition="scale-transition"
+		class="alerte"
+		>
+
+			{{alerte}}
+
+		</v-alert>
+
 		<v-flex xs12>
 
 			<div>
@@ -150,6 +171,9 @@
     		leftplaces : "",
     		leftplacestext : "",
     		textbouton : "Rejoindre",
+    		alerte: "",
+    		alertR: false,
+    		alertN: false,
 
     		pos_event : null,
 		}),
@@ -234,8 +258,6 @@
 				    })
 					.then(response => {
 
-						console.log(response.data.code);
-
 						if(response.data.code == "OK"){
 
 							let userspart = response.data.users
@@ -264,9 +286,11 @@
 								
 							});
 
+							this.popup("Inscription réussie",1);
+
 						}else{
 
-							this.popup(response.code);
+							this.popup(response.data.code,0);
 
 						}
 
@@ -313,9 +337,18 @@
 
 			},
 
-			popup(code){
+			popup(code,num){
 
-				console.log("");
+				this.alerte = code;
+
+				if(num==1){
+					this.alertR = true;
+
+				}else{
+					this.alertN = true;
+				}
+
+				setTimeout(()=>{ this.alertR=false; this.alertN=false; }, 3000);
 
 			}
 

@@ -186,6 +186,12 @@
 					
 			    })
 				.then(response => {
+
+					if(response.data.code == "OK"){
+
+						document.location.href="/event/"+response.data.id;
+
+					}
 					console.log(response);
 				});
 
