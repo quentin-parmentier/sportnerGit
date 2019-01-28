@@ -208,10 +208,15 @@
       heureHome : "",
       alertI : false,
       alerte: "",
+      globallatuser : 0,
+      globalnguser : 0,
 
 
     }),
     mounted: function () {
+
+      this.globallatuser = localStorage.lat;
+      this.globalnguser = localStorage.lng;
 
       this.initMap();
 
@@ -329,6 +334,25 @@
         });
 
       },
+
+      getLocation() {
+
+        if (navigator.geolocation) {
+          console.log(navigator.geolocation);
+          navigator.geolocation.getCurrentPosition(this.showPosition);
+        } else {
+          alert('Geolocation non supportée');
+        }
+
+      },
+
+      showPosition(position) {
+
+        this.globallatuser = position.coords.latitude;
+        this.globalnguser = position.coords.longitude;
+
+        console.log(this.globalnguser);
+      }
     }
   }
 </script>

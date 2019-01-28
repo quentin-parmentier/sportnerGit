@@ -10,13 +10,6 @@ import './styles/flexbox.css'
 
 Vue.config.productionTip = false
 
-//Infos users à définir à la connexion
-Vue.prototype.globaliduser = 10;
-Vue.prototype.globallatuser = 48.692054;
-Vue.prototype.globalnguser = 6.184417;
-
-
-
 //Class store
 class TopStore {
 

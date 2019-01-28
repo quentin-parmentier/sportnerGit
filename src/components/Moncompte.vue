@@ -1,5 +1,15 @@
 <template>
   <div>
+    <v-alert
+    :value="alertV"
+    type="success"
+    transition="scale-transition"
+    class="alerte"
+    >
+
+      {{alerte}}
+
+    </v-alert>
     <v-layout row wrap>
       <v-flex xs3 class="borderR">
         <div class="pt40 pl40 full-height fixed">
@@ -310,9 +320,18 @@ export default {
     dateFormatted: vm.formatDate(new Date().toISOString().substr(0, 10)),
     menu1: false,
     menu2: false,
+
+    globaliduser : 0,
+
+    alerte : "",
+    alertV : false,
     }),
 
     mounted : function(){
+
+      if(localStorage.globaliduser){
+        this.globaliduser = localStorage.globaliduser;
+      }
 
     	axios.get('http://api.test/api/profil/'+this.globaliduser).then(response => {
 
@@ -340,8 +359,18 @@ export default {
 
         if (this.$refs.form.validate()) {
           // Native form submission is not yet supported
-          axios.post('/api/submit', {
-            user : this.user
+          axios.post('http://api.test/api/profil', {
+
+            user : this.user,
+            iduser : this.globaliduser,
+
+          })
+          .then(response =>{
+
+            console.log(response);
+
+            this.popup(response.data.code,1);
+
           })
         }
       },
@@ -361,6 +390,22 @@ export default {
 
         const [month, day, year] = date.split('/')
         return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+      },
+
+      popup(code,num){
+
+        this.alerte = code;
+
+        if(num==1){
+          
+          this.alertV = true;
+        }else{
+          
+          
+        }
+
+        setTimeout(()=>{ this.alertV=false; }, 3000);
+
       },
 
     }

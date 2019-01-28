@@ -167,7 +167,7 @@ a {
 .alerte{
     background-color: #ff6b6bba;
     width: 350px;
-    position: absolute;
+    position: fixed;
     right: 0px;
     top :70px;
     z-index: 999;

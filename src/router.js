@@ -32,6 +32,9 @@ import Rewards from './components/Rewards.vue'
 
   //Connexion - inscription
 import SignUp from './components/SignUp.vue'
+import SignIn from './components/SignIn.vue'
+import LogOut from './components/LogOut.vue'
+
 
 //Instanciations
 Vue.use(Router)
@@ -188,6 +191,29 @@ export default new Router({
       components: {
 
         body : SignUp
+
+      }
+    },
+    {
+
+      path: '/signin',
+      name: 'signin',
+
+      components: {
+
+        body : SignIn
+
+      }
+    },
+
+    {
+
+      path: '/disconnect',
+      name: 'disconnect',
+
+      components: {
+
+        body : LogOut
 
       }
     },

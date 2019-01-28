@@ -233,6 +233,8 @@ export default {
 
     active: null,
 
+    globaliduser: 0,
+
     items: [
       { title: "Modifier le profil", icon: "account_box", link: "/account" },
       { title: "Evénements créés", icon: "event", link: "/events/created" },
@@ -312,6 +314,10 @@ export default {
   },
 
   mounted: function() {
+
+    if(localStorage.globaliduser){
+      this.globaliduser = localStorage.globaliduser;
+    }
 
     if (this.$route.params.id == "join") {
 

@@ -206,7 +206,8 @@ export default {
 
       menu: false,
       modal: false,
-      menu2: false
+      menu2: false,
+      globaliduser : 0,
  
    
   }),
@@ -233,6 +234,8 @@ export default {
   },
 
   mounted: function(){
+
+    this.globaliduser = localStorage.globaliduser;
 
     this.chips = this.$root.$data.choixsport;
     this.choixheuremodel = this.$root.$data.choixheuremodel;

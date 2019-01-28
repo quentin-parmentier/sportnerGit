@@ -145,10 +145,15 @@ export default {
     ],
     notesG: [],
     notesM: [],
+    globaliduser : 0,
 
   }),
 
   mounted: function(){
+
+    if(localStorage.globaliduser){
+      this.globaliduser = localStorage.globaliduser;
+    }
 
     axios.get('http://api.test/api/mynotes/'+this.globaliduser).then(response => {
 

@@ -80,6 +80,7 @@
                           max-width="290px"
                           min-width="290px"
 													color="#fb6b53"
+                          disabled
                         >
                           <v-text-field
                             slot="activator"

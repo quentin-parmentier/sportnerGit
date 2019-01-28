@@ -20,14 +20,12 @@
                 <v-card class="form_presentation white--text" height="100%">
                   <v-card-title>
                     <div class="content">
-                      <div class="headline">Inscription</div>
-                      <p>Bienvenue sur Sportner.</p>
-                      <p>Trouvez rapidement et</p>
-                      <p>facilement des gens avec qui</p>
-                      <p>faire du sport autour de</P>
-                      <p>chez vous.</p>
-                      <a href="/signIn"><span>Déjà inscrit ? Connectez-vous</span></a>
-                      
+                      <div class="headline">Connexion</div>
+                      <p> Bon retour parmis nous. </p>
+                      <p> Trouvez des partenaires </p>
+                      <p> sportif sans plus </p>
+                      <p> attendre. </p>
+                      <a href="/signUp"><span>Pas encore membre ? Inscrivez-vous !</span></a>
                     </div>
                   </v-card-title>
                 </v-card>
@@ -39,7 +37,6 @@
                     <!--<v-text-field v-model="form.user.pseudo" :rules="nameRules" label="Pseudo" required></v-text-field>
                     <v-text-field v-model="form.user.email" :rules="emailRules" label="E-mail" required></v-text-field>-->
                     <v-text-field v-model="form.user.pseudo" label="Pseudo" :rules="form.rules.pseudoRules" required></v-text-field>
-                    <v-text-field v-model="form.user.mail" label="E-mail" required></v-text-field>
                     <v-text-field
                       v-model="form.user.password"
                       label="Mot de passe"
@@ -50,15 +47,7 @@
                       :type="form.isPasswordVisible ? 'text' : 'password'"
                       required
                     ></v-text-field>
-                    <v-text-field
-                      v-model="form.user.passwordConfirm"
-                      label="Confirmation"
-                      :rules="form.rules.passwordConfirmRules"
-                      :append-icon="form.isPassConfirmVisible ? 'visibility' : 'visibility_off'"
-                      @click:append="() => (form.isPassConfirmVisible = !form.isPassConfirmVisible)"
-                      :type="form.isPassConfirmVisible ? 'text' : 'password'"
-                      required
-                    ></v-text-field>
+                    
                     <!--<v-checkbox label="Je souhaite recevoir des offres des partenaires de Sportner"></v-checkbox>
                     <v-checkbox
                       :rules="[v => !!v || 'Vous devez accetper les conditions générales avant de continuer']"
@@ -67,7 +56,7 @@
                     ></v-checkbox>-->
 
                     <div class="submit_button">
-                      <v-btn :disabled="!form.valid" @click="inscription">Inscription</v-btn>
+                      <v-btn :disabled="!form.valid" @click="connexion">Connexion</v-btn>
                     </div>
                     <div class="other_buttons text-xs-center">
                       <v-btn>
@@ -175,9 +164,7 @@ export default {
       /* User informations */
       user: {
         pseudo: "",
-        email: "",
         password: "",
-        passwordConfirm: "",
         partnersOffers: false
       },
       /* Password section (validation rules) */
@@ -200,9 +187,11 @@ export default {
       }
     },
 
-      alertN : false,
+    alertN : false,
 
-      alerte: "",
+    alerte: "",
+
+
   }),
 
   mounted: function(){
@@ -215,55 +204,6 @@ export default {
 
   methods: {
 
-    inscription(){
-
-      if(this.form.user.password == this.form.user.passwordConfirm){
-
-        axios.post('http://api.test/api/inscription',
-        {
-          
-          pseudo : this.form.user.pseudo,
-          email : this.form.user.mail,
-          password : this.form.user.password,
-          
-        })
-        .then(response => {
-
-          if(response.data.code == "OK"){
-
-            localStorage.globaliduser = response.data.user;
-            document.location.href="/";
-            //document.location.href="/event/"+response.data.id;
-
-          }else{
-          
-            this.popup(response.data.code,0);
-
-          }
-
-        });
-
-      }else{
-
-        this.popup("Les mots de passe sont différents",0);
-      }
-    },
-
-    popup(code,num){
-
-      this.alerte = code;
-
-      if(num==1){
-        
-
-      }else{
-        
-        this.alertN = true;
-      }
-
-      setTimeout(()=>{ this.alertN=false; }, 3000);
-
-    },
 
     getLocation() {
 
@@ -284,8 +224,51 @@ export default {
 
     },
 
+    connexion(){
+
+      axios.post('http://api.test/api/connexion',
+      {
+        
+        pseudo : this.form.user.pseudo,
+        password : this.form.user.password,
+        
+      })
+      .then(response => {
+
+        if(response.data.code == "OK"){
+
+          console.log(response.data.user);
+
+          localStorage.globaliduser = response.data.user[0].id_user;
+          document.location.href="/";
+          //document.location.href="/event/"+response.data.id;
+
+        }else{
+        
+          this.popup(response.data.code,0);
+
+        }
+
+      });
+
+    },
+
+    popup(code,num){
+
+      this.alerte = code;
+
+      if(num==1){
+        
+
+      }else{
+        
+        this.alertN = true;
+      }
+
+      setTimeout(()=>{ this.alertN=false; }, 3000);
+
+    }
+
   }
-
-
 };
 </script>

@@ -12,7 +12,15 @@
 <script>
 
   export default {
-   	
+   	mounted : function(){
+
+      if(!localStorage.globaliduser && (this.$route.name != "signin" && this.$route.name != "signup")){
+
+        document.location.href="/signIn";
+
+      }
+
+    }
   }
 
 </script>

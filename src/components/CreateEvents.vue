@@ -10,6 +10,17 @@
 	
 	
 	<div>
+
+		<v-alert
+		:value="alertN"
+		type="error"
+		transition="scale-transition"
+		class="alerte"
+		>
+
+			{{alerte}}
+
+		</v-alert>
 		
 		<v-layout row wrap>
 
@@ -138,9 +149,21 @@
 	        menu1 : null,
 
 	        valid: true,
+
+	        alertN: false,
+
+	        alerte: "",
+
+	        globaliduser: ""
+
+
 		}),
 
 		mounted: function(){
+
+			if(localStorage.globaliduser){
+				this.globaliduser = localStorage.globaliduser;
+			}
 
 			this.initMap();
 
@@ -191,11 +214,30 @@
 
 						document.location.href="/event/"+response.data.id;
 
+					}else{
+					
+						this.popup(response.data.code,0);
+
 					}
-					console.log(response);
 				});
 
-	      	}
+	      	},
+
+			popup(code,num){
+
+				this.alerte = code;
+
+				if(num==1){
+					
+
+				}else{
+					
+					this.alertN = true;
+				}
+
+				setTimeout(()=>{ this.alertN=false; }, 3000);
+
+			}
 	    }
 	}
 

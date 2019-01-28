@@ -176,9 +176,15 @@
     		alertN: false,
 
     		pos_event : null,
+    		globaliduser : 0,
+
 		}),
 
 		mounted: function(){
+
+			if(localStorage.globaliduser){
+				this.globaliduser = localStorage.globaliduser;
+			}
 
 			var idevent = this.$route.params.id;
 
