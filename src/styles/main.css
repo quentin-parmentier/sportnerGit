@@ -82,6 +82,13 @@ i.mdi.icon-xlarge {
     width: 100%;
     z-index: 10000000000000;
 }
+
+.sportclass{
+
+    margin-top: 10px;
+}
+
+
 .leftbar{
     top : 64px;
     position: fixed;

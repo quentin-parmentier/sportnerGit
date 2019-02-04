@@ -52,24 +52,27 @@
     </v-toolbar>
 
     <v-layout wrap>
+
       <v-navigation-drawer v-model="drawer" temporary class="leftbar">
+
         <v-list class="pa-1">
-          <v-list-tile avatar>
+          <v-list-tile>
 
             <v-list-tile-avatar>
-              <img src="https://randomuser.me/api/portraits/men/85.jpg">
+              <img v-bind:src="'https://randomuser.me/api/portraits/men/'+globaliduser+'.jpg'"> 
             </v-list-tile-avatar>
 
             <v-list-tile-content>
               <v-list-tile-title>{{user.pseudo}}</v-list-tile-title>
             </v-list-tile-content>
+
           </v-list-tile>
         </v-list>
 
         <v-list class="pt-0" dense>
           <v-divider></v-divider>
 
-          <v-list-tile v-for="item in items" :key="item.title" @click :to="item.link">
+          <v-list-tile v-for="item in items" :key="item.title" :to="item.link">
 
             <v-list-tile-action>
               
@@ -96,9 +99,9 @@
 
         <v-layout row wrap class="mt15">
 
-          <v-flex xs4 class="ml20">
+          <v-flex xs4 class="ml20 mt20">
 
-            <v-combobox v-model="chips" :items="sports" label="Vos sports" chips clearable solo multiple class="topbarplus">
+            <v-combobox v-model="chips" :items="sports" label="Vos sports" chips clearable solo multiple class="sportclass">
 
               <template slot="selection" slot-scope="data">
 
@@ -170,6 +173,7 @@
 
 
 export default {
+  /* eslint-disable */
   data : vm => ({
       
       chips: [], //On récupère ça dans les likes
@@ -225,8 +229,6 @@ export default {
 
     verification(){
 
-      //console.log(this.$root.$data);
-      //console.log(this.$root.$data);
       this.$root.$emit('Home') //like this
 
     }
