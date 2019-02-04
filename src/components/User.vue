@@ -270,6 +270,7 @@ export default {
 
 	      this.user = response.data.user[0];
         this.sports = response.data.sport;
+        this.date = response.data.user[0].birthday;
 
         console.log(this.user);
 

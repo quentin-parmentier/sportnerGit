@@ -261,51 +261,54 @@ export default {
     deleteevent($id){
 
       if (this.$route.params.id == "join") {
+        if(window.confirm('Voulez-vous vraiment annuler votre participation à cet événement ?')){       
+          axios.delete('http://api.test/api/leaveevent/'+$id , {
 
-        axios.delete('http://api.test/api/leaveevent/'+$id , {
+            params: {iduser: this.globaliduser}
 
-          params: {iduser: this.globaliduser}
+          }).then(response => {
 
-        }).then(response => {
+            console.log(response);
+            this.titlePage = "Mes événements rejoints";
+            this.typeEvent = "joined";
+            this.clears = "Annuler";
 
-          console.log(response);
-          this.titlePage = "Mes événements rejoints";
-          this.typeEvent = "joined";
-          this.clears = "Annuler";
-
-          axios.get('http://api.test/api/joinedevents/'+this.globaliduser).then(response => {
-
-            this.oldevents = response.data.passed;
-            this.events = response.data.futur;
-
-          });
-
-        });
-
-      } else if (this.$route.params.id == "created") {
-
-        axios.delete('http://api.test/api/events/'+$id , {
-
-          params: {iduser: this.globaliduser}}
-
-
-          ).then(response => {
-
-          console.log(response);
-
-          this.titlePage = "Mes événements créés";
-          this.typeEvent = "created";
-          this.clears = "Supprimer";
-
-          axios.get('http://api.test/api/myevents/'+this.globaliduser).then(response => {
+            axios.get('http://api.test/api/joinedevents/'+this.globaliduser).then(response => {
 
               this.oldevents = response.data.passed;
               this.events = response.data.futur;
-              console.log(response.data.futur);
+
+            });
 
           });
+        }
+      } else if (this.$route.params.id == "created") {
 
-        });
+        if(window.confirm('Voulez-vous vraiment supprimer cet événement ?')){
+
+          axios.delete('http://api.test/api/events/'+$id , {
+
+            params: {iduser: this.globaliduser}}
+
+
+            ).then(response => {
+
+            console.log(response);
+
+            this.titlePage = "Mes événements créés";
+            this.typeEvent = "created";
+            this.clears = "Supprimer";
+
+            axios.get('http://api.test/api/myevents/'+this.globaliduser).then(response => {
+
+                this.oldevents = response.data.passed;
+                this.events = response.data.futur;
+                console.log(response.data.futur);
+
+            });
+
+          });
+        }
 
       }
 
