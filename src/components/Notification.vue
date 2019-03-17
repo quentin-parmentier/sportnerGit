@@ -64,13 +64,10 @@ import axios from 'axios'
 
 			notifications: [
 
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'( Jean Michel est parti :'( Jean Michel est parti :'( Jean Michel est parti :'( Jean Michel est parti :'( Jean Michel est parti :'(" , type: "message"},
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'(" , type: "message"},
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'(" , type: "message"},
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'(" , type: "message"},
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'(" , type: "message"},
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'(" , type: "message"},
-	          { date: '12 janvier 8h' , text: " Jean Michel est parti :'(" , type: "message"}, //Notification de msg / notes / leave / Nouveaux event près de chez nous
+	          { date: '12 janvier 8h' , text: " Jean Michel est parti de l'événement" , type: "message"},
+	          { date: '12 janvier 8h' , text: " Marc Benoit a rejoint l'événement Foot2Rue" , type: "message"},
+	          { date: '12 janvier 8h' , text: " L'événement Piscine a été supprimé par Bernard Dubois " , type: "message"},
+	          { date: '12 janvier 8h' , text: " Vous été kick de l'événement" , type: "message"}, //Notification de msg / notes / leave / Nouveaux event près de chez nous
 	        ],
 		}),
 

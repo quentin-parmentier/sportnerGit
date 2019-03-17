@@ -10,7 +10,7 @@
 	
 	
 	<div>
-
+		<!-- Alertes -->
 		<v-alert
 		:value="alertN"
 		type="error"
@@ -26,7 +26,7 @@
 
 			<v-flex xs12>
 
-				<div>
+				<div> <!-- Form -->
 	      			<v-form ref="form" v-model="valid" lazy-validation>
 
 	      				<p class="font-weight-bold display-2 titrepage"> Créer un événement :</p>
@@ -62,7 +62,7 @@
 							</v-text-field>
 
 							<v-textarea v-model="event.description" label="Description" auto-grow counter maxlength="1000" class="mb20"> </v-textarea>
-
+							<!-- Map -->
 							<div id="js_map" class="map_create" ref="mamap"> </div>
 
 							<v-btn :disabled="!valid" @click="submit" class="mt20"> Créer </v-btn>

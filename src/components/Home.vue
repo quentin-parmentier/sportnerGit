@@ -68,7 +68,7 @@
 <template>
   
   <div>
-
+<!-- Alerte -->
     <v-layout row wrap>
       <v-alert
     :value="alertI"
@@ -80,6 +80,7 @@
       {{alerte}}
     </v-alert>
 
+<!-- Liste -->
       <v-flex xs8>
         <v-card>
           <v-container v-bind="{ [`grid-list-sm`]: true }" fluid>
@@ -107,6 +108,7 @@
           </v-container>
         </v-card>
       </v-flex>
+      <!-- Map -->
       <v-flex xs4>
         <div class="map blank" id="js_map" ref="mamap">
             <v-btn color="error" class="floating-reload" ref="floatbutton" @click="eventmaj" v-if="isReload">Relancer la recherche ici <v-icon>refresh</v-icon></v-btn>

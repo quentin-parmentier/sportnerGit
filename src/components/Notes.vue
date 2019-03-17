@@ -135,11 +135,7 @@ export default {
     items: [
       { title: "Modifier le profil", icon: "account_box", link: "/account" },
       { title: "Evénements créés", icon: "event", link: "/events/created" },
-      {
-        title: "Evénements rejoints",
-        icon: "event_note",
-        link: "/events/join"
-      },
+      { title: "Evénements rejoints", icon: "event_note", link: "/events/join" },
       { title: "Notes", icon: "star", link: "/notes" },
       { title: "Rewards", icon: "fa-medal", link: "/rewards" }
     ],
