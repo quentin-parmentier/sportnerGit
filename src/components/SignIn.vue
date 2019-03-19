@@ -212,7 +212,9 @@ export default {
         navigator.geolocation.getCurrentPosition(this.showPosition);
 
       } else {
+
         alert('Geolocation non supportée');
+        
       }
 
     },
@@ -240,6 +242,7 @@ export default {
           console.log(response.data.user);
 
           localStorage.globaliduser = response.data.user[0].id_user;
+
           document.location.href="/";
           //document.location.href="/event/"+response.data.id;
 

@@ -170,7 +170,7 @@
 
 <script>
 
-
+import axios from "axios";
 
 export default {
   /* eslint-disable */
@@ -182,7 +182,7 @@ export default {
       datetop: new Date().toISOString().substr(0, 10),
 
       sports: [
-        "Accrobranche","Aerobic","Aéromodélisme","Aérostation","Agility","Aikido","Airsoft","Alpinisme","Apnée","Athlétisme","Aviation","Aviron","Badminton","Baseball","Basketball","Biathlon","Billard","BMX","Bobsleigh","Boccia","Bodyboard","Boomerang","Bowling","Boxe","Bridge","Canoë","Canoë-kayak","Canyonisme","Capoeira","Carrom","Catch","Chanbara","Cheerleading","Cirque","Claquettes","Combat","Course","Cricket","Croquet","Crosse","Crossfit","Curling","Cyclisme","Danse","Danse orientale","Deltaplane","Echecs","Equitation","Escalade","Escrime","Fitness","Flag","Fléchettes","Football","Footing","Funboard","Futsal","Giraviation","Golf","Gouren","Grappling","Gymnastique","Haltérophilie","Handball","Handisport","Hapkido","Hockey","Iaïdo","Jetski","Jodo","Jorkyball","Joutes","Ju-Jitsu","Judo","Karaté","Karting","Kempo","Kendo","Kenjutsu","Kitesurf","Kobudo","Krav-maga","Kyudo","Lancer du javelot","Lancer du marteau","Lancer du poids","Luge","Lutte","Marche","Monocycle","Moto","Motoneige","Mountainboard","Musculation","Naginata","Natation","Natation synchronisée","Ninjitsu","Nunchaku","Omnikin","Padel","Paintball","Pancrace","Parachutisme","Paramoteur","Parapente","Patinage","Pêche","Pentathlon","Pétanque","Peteca","Planche à voile","Plongée","Plongeon","Polo","Qi gong","Quad","Quilles","Rafting","Ragga","Raid","Rallye","Randonnée","Rock","Roller","Rugby","Salsa","Samba","Sambo","Sarbacane","Sauvetage","Skateboard","Skeleton","Ski","Snowboard","Softball","Spéléologie","Squash","Sumo","Surf","Taekwondo","Tambourin","Tango","Tennis","Tir","Tir à l'arc","Traîneaux","Trampoline","Triathlon","Trottinette","Tumbling","ULM","Ultimate","Ultimate fresbee","Varappe","Vélo","Voile","Volleyball","Voltige","VTT","Wakeboard","Waterpolo","Yoga"
+        
       ],
 
       drawer: false,
@@ -237,11 +237,20 @@ export default {
 
   mounted: function(){
 
+    axios.get('http://api.test/api/toutesvilles').then(response => {
+
+      this.sports = response.data.sports
+
+    });
+
+    
     this.globaliduser = localStorage.globaliduser;
 
     this.chips = this.$root.$data.choixsport;
     this.choixheuremodel = this.$root.$data.choixheuremodel;
     this.datetop = "";
+
+    
 
 
   },
